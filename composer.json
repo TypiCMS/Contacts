@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "typicms/core": "dev-master",
+        "typicms/core": "~1.8.0",
         "msurguy/honeypot": "~0.2"
     },
     "autoload": {
