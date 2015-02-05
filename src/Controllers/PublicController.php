@@ -31,7 +31,7 @@ class PublicController extends BasePublicController
     public function index()
     {
         $model = $this->repository->getmodel();
-        $this->layout->content = View::make('contacts.public.form')
+        return view('contacts.public.form')
             ->with('formIsSent', Session::get('formIsSent'))
             ->withModel($model);
     }
