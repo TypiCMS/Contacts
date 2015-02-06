@@ -30,7 +30,7 @@
                 {{ Form::label('title', trans('validation.attributes.title')) }}
                 {{ Form::select('title', array('' => '', 'mr' => trans('validation.attributes.mr'), 'mrs' => trans('validation.attributes.mrs')), null, array('class' => 'input-lg form-control')) }}
                 @if($errors->has('title'))
-                <span class="help-block">{{ $errors->first('title') }}</span>
+                <span class="help-block">{!! $errors->first('title') !!}</span>
                 @endif
             </div>
 
@@ -40,7 +40,7 @@
                 {{ Form::label('first_name', trans('validation.attributes.first_name')) }}
                 {{ Form::text('first_name', null, array('class' => 'input-lg form-control')) }}
                 @if($errors->has('first_name'))
-                <span class="help-block">{{ $errors->first('first_name') }}</span>
+                <span class="help-block">{!! $errors->first('first_name') !!}</span>
                 @endif
             </div>
 
@@ -50,7 +50,7 @@
                 {{ Form::label('last_name', trans('validation.attributes.last_name')) }}
                 {{ Form::text('last_name', null, array('class' => 'input-lg form-control')) }}
                 @if($errors->has('last_name'))
-                <span class="help-block">{{ $errors->first('last_name') }}</span>
+                <span class="help-block">{!! $errors->first('last_name') !!}</span>
                 @endif
             </div>
 
@@ -62,7 +62,7 @@
             {{ Form::label('email', trans('validation.attributes.email')) }}
             {{ Form::text('email', null, array('class' => 'input-lg form-control')) }}
             @if($errors->has('email'))
-            <span class="help-block">{{ $errors->first('email') }}</span>
+            <span class="help-block">{!! $errors->first('email') !!}</span>
             @endif
         </div>
 
@@ -71,7 +71,7 @@
             {{ Form::label('website', trans('validation.attributes.website')) }}
             {{ Form::text('website', null, array('class' => 'input-lg form-control')) }}
             @if($errors->has('website'))
-            <span class="help-block">{{ $errors->first('website') }}</span>
+            <span class="help-block">{!! $errors->first('website') !!}</span>
             @endif
         </div> --}}
 
@@ -80,7 +80,7 @@
             {{ Form::label('company', trans('validation.attributes.company')) }}
             {{ Form::text('company', null, array('class' => 'input-lg form-control')) }}
             @if($errors->has('company'))
-            <span class="help-block">{{ $errors->first('company') }}</span>
+            <span class="help-block">{!! $errors->first('company') !!}</span>
             @endif
         </div> --}}
 
@@ -89,7 +89,7 @@
             {{ Form::label('address', trans('validation.attributes.address')) }}
             {{ Form::text('address', null, array('class' => 'input-lg form-control')) }}
             @if($errors->has('address'))
-            <span class="help-block">{{ $errors->first('address') }}</span>
+            <span class="help-block">{!! $errors->first('address') !!}</span>
             @endif
         </div> --}}
 
@@ -98,7 +98,7 @@
             {{ Form::label('postcode', trans('validation.attributes.postcode')) }}
             {{ Form::text('postcode', null, array('class' => 'input-lg form-control')) }}
             @if($errors->has('postcode'))
-            <span class="help-block">{{ $errors->first('postcode') }}</span>
+            <span class="help-block">{!! $errors->first('postcode') !!}</span>
             @endif
         </div> --}}
 
@@ -107,7 +107,7 @@
             {{ Form::label('city', trans('validation.attributes.city')) }}
             {{ Form::text('city', null, array('class' => 'input-lg form-control')) }}
             @if($errors->has('city'))
-            <span class="help-block">{{ $errors->first('city') }}</span>
+            <span class="help-block">{!! $errors->first('city') !!}</span>
             @endif
         </div> --}}
 
@@ -116,7 +116,7 @@
             {{ Form::label('country', trans('validation.attributes.country')) }}
             {{ Form::text('country', null, array('class' => 'input-lg form-control')) }}
             @if($errors->has('country'))
-            <span class="help-block">{{ $errors->first('country') }}</span>
+            <span class="help-block">{!! $errors->first('country') !!}</span>
             @endif
         </div> --}}
 
@@ -125,7 +125,7 @@
             {{ Form::label('phone', trans('validation.attributes.phone')) }}
             {{ Form::text('phone', null, array('class' => 'input-lg form-control')) }}
             @if($errors->has('phone'))
-            <span class="help-block">{{ $errors->first('phone') }}</span>
+            <span class="help-block">{!! $errors->first('phone') !!}</span>
             @endif
         </div> --}}
 
@@ -134,7 +134,7 @@
             {{ Form::label('mobile', trans('validation.attributes.mobile')) }}
             {{ Form::text('mobile', null, array('class' => 'input-lg form-control')) }}
             @if($errors->has('mobile'))
-            <span class="help-block">{{ $errors->first('mobile') }}</span>
+            <span class="help-block">{!! $errors->first('mobile') !!}</span>
             @endif
         </div> --}}
 
@@ -143,7 +143,7 @@
             {{ Form::label('fax', trans('validation.attributes.fax')) }}
             {{ Form::text('fax', null, array('class' => 'input-lg form-control')) }}
             @if($errors->has('fax'))
-            <span class="help-block">{{ $errors->first('fax') }}</span>
+            <span class="help-block">{!! $errors->first('fax') !!}</span>
             @endif
         </div> --}}
 
@@ -153,7 +153,7 @@
             {{ Form::label('message', trans('validation.attributes.message')) }}
             {{ Form::textarea('message', null, array('class' => 'input-lg form-control', 'rows' => 5)) }}
             @if($errors->has('message'))
-            <span class="help-block">{{ $errors->first('message') }}</span>
+            <span class="help-block">{!! $errors->first('message') !!}</span>
             @endif
         </div>
 
