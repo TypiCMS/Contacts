@@ -1,28 +1,18 @@
 <?php
 namespace TypiCMS\Modules\Contacts\Providers;
 
-use Lang;
-use View;
 use Config;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
-
-// Model
+use Illuminate\Support\ServiceProvider;
+use Lang;
 use TypiCMS\Modules\Contacts\Models\Contact;
-
-// Repo
-use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
-
-// Cache
 use TypiCMS\Modules\Contacts\Repositories\CacheDecorator;
-use TypiCMS\Services\Cache\LaravelCache;
-
-// Form
+use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Contacts\Services\Form\ContactForm;
 use TypiCMS\Modules\Contacts\Services\Form\ContactFormLaravelValidator;
-
-// Observers
 use TypiCMS\Observers\FileObserver;
+use TypiCMS\Services\Cache\LaravelCache;
+use View;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -33,9 +23,14 @@ class ModuleProvider extends ServiceProvider
         require __DIR__ . '/../routes.php';
 
         // Add dirs
-        View::addLocation(__DIR__ . '/../Views');
-        Lang::addNamespace('contacts', __DIR__ . '/../lang');
-        Config::addNamespace('contacts', __DIR__ . '/../config');
+        View::addNamespace('contacts', __DIR__ . '/../views/');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'contacts');
+        $this->publishes([
+            __DIR__ . '/../config/' => config_path('typicms/contacts'),
+        ], 'config');
+        $this->publishes([
+            __DIR__ . '/../migrations/' => base_path('/database/migrations'),
+        ], 'migrations');
 
         // Observers
         Contact::observe(new FileObserver);
@@ -66,10 +61,6 @@ class ModuleProvider extends ServiceProvider
                 new ContactFormLaravelValidator($app['validator']),
                 $app->make('TypiCMS\Modules\Contacts\Repositories\ContactInterface')
             );
-        });
-
-        $app->before(function ($request, $response) {
-            require __DIR__ . '/../breadcrumbs.php';
         });
 
     }

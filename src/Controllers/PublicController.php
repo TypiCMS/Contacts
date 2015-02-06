@@ -2,7 +2,7 @@
 namespace TypiCMS\Modules\Contacts\Controllers;
 
 use App;
-use Str;
+use Illuminate\Support\Str;
 use View;
 use Input;
 use Session;

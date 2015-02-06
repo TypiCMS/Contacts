@@ -17,8 +17,8 @@
 
     {{ Form::open( array( 'route' => array('contacts.index'), 'method' => 'post', 'role' => 'form' ) ) }}
 
-        {{ BootForm::hidden('locale', App::getLocale()); }}
-        {{ BootForm::hidden('language', App::getLocale()) }}
+        {!! BootForm::hidden('locale', App::getLocale()) !!}
+        {!! BootForm::hidden('language', App::getLocale()) !!}
         
         {{ Form::honeypot('my_name', 'my_time') }}
         
