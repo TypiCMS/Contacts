@@ -1,6 +1,8 @@
+@extends('core::public.master')
+
 @section('main')
 
-    <h2>{{ Str::title(trans_choice('contacts::global.contacts', 1)) }}</h2>
+    <h2>{{ Illuminate\Support\Str::title(trans_choice('contacts::global.contacts', 1)) }}</h2>
 
     @if ($formIsSent)
         <div class="jubotron alert alert-success text-center">
