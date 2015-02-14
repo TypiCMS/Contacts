@@ -1,5 +1,5 @@
 <?php
-namespace TypiCMS\Modules\Contacts\Controllers;
+namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
 use App;
 use Illuminate\Support\Str;
@@ -10,7 +10,7 @@ use Redirect;
 use TypiCMS;
 use TypiCMS\Modules\Contacts\Repositories\ContactInterface;
 use TypiCMS\Modules\Contacts\Services\Form\ContactForm;
-use TypiCMS\Controllers\BasePublicController;
+use TypiCMS\Http\Controllers\BasePublicController;
 
 class PublicController extends BasePublicController
 {

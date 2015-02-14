@@ -1,7 +1,7 @@
 <?php
-namespace TypiCMS\Modules\Contacts\Controllers;
+namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
-use TypiCMS\Controllers\AdminSimpleController;
+use TypiCMS\Http\Controllers\AdminSimpleController;
 use TypiCMS\Modules\Contacts\Repositories\ContactInterface;
 use TypiCMS\Modules\Contacts\Services\Form\ContactForm;
 

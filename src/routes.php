@@ -8,7 +8,7 @@ if (! App::runningInConsole()) {
     Route::group(
         array(
             'before'    => 'visitor.publicAccess',
-            'namespace' => 'TypiCMS\Modules\Contacts\Controllers',
+            'namespace' => 'TypiCMS\Modules\Contacts\Http\Controllers',
         ),
         function () {
             $routes = app('TypiCMS.routes');
@@ -32,13 +32,13 @@ Route::post(
     array(
         'before' => 'csrf',
         'as'     => 'contacts.index',
-        'uses'   => 'TypiCMS\Modules\Contacts\Controllers\PublicController@store'
+        'uses'   => 'TypiCMS\Modules\Contacts\Http\Controllers\PublicController@store'
     )
 );
 
 Route::group(
     array(
-        'namespace' => 'TypiCMS\Modules\Contacts\Controllers',
+        'namespace' => 'TypiCMS\Modules\Contacts\Http\Controllers',
         'prefix'    => 'admin',
     ),
     function () {
