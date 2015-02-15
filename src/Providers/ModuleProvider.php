@@ -8,8 +8,6 @@ use Lang;
 use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Contacts\Repositories\CacheDecorator;
 use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
-use TypiCMS\Modules\Contacts\Services\Form\ContactForm;
-use TypiCMS\Modules\Contacts\Services\Form\ContactFormLaravelValidator;
 use TypiCMS\Observers\FileObserver;
 use TypiCMS\Services\Cache\LaravelCache;
 use View;
@@ -56,13 +54,6 @@ class ModuleProvider extends ServiceProvider
             $laravelCache = new LaravelCache($app['cache'], 'contacts', 10);
 
             return new CacheDecorator($repository, $laravelCache);
-        });
-
-        $app->bind('TypiCMS\Modules\Contacts\Services\Form\ContactForm', function (Application $app) {
-            return new ContactForm(
-                new ContactFormLaravelValidator($app['validator']),
-                $app->make('TypiCMS\Modules\Contacts\Repositories\ContactInterface')
-            );
         });
 
     }

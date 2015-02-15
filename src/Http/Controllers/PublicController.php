@@ -8,19 +8,17 @@ use Input;
 use Session;
 use Redirect;
 use TypiCMS;
+use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Repositories\ContactInterface;
-use TypiCMS\Modules\Contacts\Services\Form\ContactForm;
 use TypiCMS\Http\Controllers\BasePublicController;
 
 class PublicController extends BasePublicController
 {
     protected $form;
 
-    public function __construct(ContactInterface $contact, ContactForm $contactform)
+    public function __construct(ContactInterface $contact)
     {
-        $this->form = $contactform;
         parent::__construct($contact);
-        $this->title['parent'] = Str::title(trans_choice('contacts::global.contacts', 2));
     }
 
     /**
