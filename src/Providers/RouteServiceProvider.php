@@ -48,12 +48,13 @@ class RouteServiceProvider extends ServiceProvider {
                         $uri = $routes['contacts'][$lang];
                     } else {
                         $uri = 'contacts';
-                        if (Config::get('app.fallback_locale') != $lang || Config::get('app.main_locale_in_url')) {
+                        if (Config::get('app.fallback_locale') != $lang || config('typicms.main_locale_in_url')) {
                             $uri = $lang . '/' . $uri;
                         }
                     }
-                    $router->get($uri, array('as' => $lang.'.contacts', 'uses' => 'PublicController@index'));
-                    $router->get($uri.'/{slug}', array('as' => $lang.'.contacts.slug', 'uses' => 'PublicController@show'));
+                    $router->get($uri, ['as' => $lang.'.contacts', 'uses' => 'PublicController@form']);
+                    $router->get($uri . '/sent', ['as' => $lang.'.contacts.sent', 'uses' => 'PublicController@sent']);
+                    $router->post($uri, ['as' => $lang . '.contacts.store', 'uses' => 'PublicController@store']);
                 }
             });
 

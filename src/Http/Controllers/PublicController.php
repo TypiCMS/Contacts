@@ -26,13 +26,19 @@ class PublicController extends BasePublicController
      *
      * @return Response
      */
-    public function index()
+    public function form()
     {
-        $model = $this->repository->getmodel();
-        $formIsSent = Session::get('formIsSent');
+        return view('contacts::public.form');
+    }
 
-        return view('contacts::public.form')
-            ->with(compact('model', 'formIsSent'));
+    /**
+     * Display a page when form is sent.
+     *
+     * @return Response
+     */
+    public function sent()
+    {
+        return view('contacts::public.sent');
     }
 
     /**
@@ -40,18 +46,10 @@ class PublicController extends BasePublicController
      *
      * @return Response
      */
-    public function store()
+    public function store(FormRequest $request)
     {
-        App::setLocale(Input::get('locale'));
-
-        if ($this->form->save(Input::all())) {
-            Session::flash('formIsSent', true);
-            return Redirect::back();
-        }
-
-        return Redirect::back()
-            ->withInput()
-            ->withErrors($this->form->errors());
-
+        $this->repository->create($request->all());
+        return Redirect::route(App::getlocale() . '.contacts.sent')
+            ->with('success', true);
     }
 }
