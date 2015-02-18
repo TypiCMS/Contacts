@@ -1,7 +1,7 @@
 @include('core::admin._buttons-form')
 
 {!! BootForm::hidden('id') !!}
-{!! BootForm::hidden('locale', App::getLocale()) !!}
+{!! BootForm::hidden('locale')->value(App::getLocale()) !!}
 {!! Honeypot::getFormHTML('my_name', 'my_time') !!}
 {!! BootForm::hidden('my_time')->value(Crypt::encrypt(time()-60)) !!}
 
