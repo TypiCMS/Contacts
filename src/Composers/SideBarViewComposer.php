@@ -1,18 +1,27 @@
 <?php
 namespace TypiCMS\Modules\Contacts\Composers;
 
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Sidebar\SidebarGroup;
+use Maatwebsite\Sidebar\SidebarItem;
+use TypiCMS\Composers\BaseSidebarViewComposer;
 
-class SidebarViewComposer
+class SidebarViewComposer extends BaseSidebarViewComposer
 {
     public function compose(View $view)
     {
-        $view->menus['contacts']->put('contacts', [
-            'weight' => config('typicms.contacts.sidebar.weight'),
-            'request' => $view->prefix . '/contacts*',
-            'route' => 'admin.contacts.index',
-            'icon-class' => 'icon fa fa-fw fa-envelope',
-            'title' => 'Contacts',
-        ]);
+        $view->sidebar->group(trans('global.menus.contacts'), function (SidebarGroup $group) {
+            $group->id = 'contacts';
+            $group->weight = 20;
+            $group->addItem(trans('contacts::global.name'), function (SidebarItem $item) {
+                $item->icon = config('typicms.contacts.sidebar.icon', 'icon fa fa-fw fa-envelope');
+                $item->weight = config('typicms.contacts.sidebar.weight');
+                $item->route('admin.contacts.index');
+                $item->append('admin.contacts.create');
+                $item->authorize(
+                    $this->auth->hasAccess('contacts.index')
+                );
+            });
+        });
     }
 }
