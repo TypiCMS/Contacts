@@ -1,6 +1,6 @@
 <?php
 return array(
-    'name' => 'contacts',
+    'name' => 'Contacts',
     'contacts' => 'contact|contacts',
     'New'  => 'New contact',
     'Edit' => 'Edit contact',

@@ -1,8 +1,11 @@
 @extends('core::public.master')
 
+@section('title', trans('contacts::global.name') . ' – ' . $websiteTitle)
+@section('ogTitle', trans('contacts::global.name'))
+
 @section('main')
 
-    <h2>{{ Illuminate\Support\Str::title(trans_choice('contacts::global.contacts', 1)) }}</h2>
+    <h2>@lang('contacts::global.name')</h2>
 
     @if (! $errors->isEmpty())
         <div class="alert alert-danger alert-dismissable">
