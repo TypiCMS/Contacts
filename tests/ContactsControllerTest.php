@@ -4,15 +4,11 @@ use Illuminate\Support\Facades\Crypt;
 
 class ContactsControllerTest extends TestCase
 {
-    public function tearDown()
-    {
-        Mockery::close();
-    }
 
     public function testAdminIndex()
     {
-        $this->get('admin/contacts');
-        $this->assertTrue($this->client->getResponse()->isOk());
+        $response = $this->call('GET', 'admin/contacts');
+        $this->assertEquals(200, $response->getStatusCode());
     }
 
     public function testStoreFails()
