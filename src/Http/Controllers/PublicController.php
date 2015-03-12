@@ -48,7 +48,11 @@ class PublicController extends BasePublicController
      */
     public function store(FormRequest $request)
     {
-        $this->repository->create($request->all());
+        $data = [];
+        foreach ($request->all() as $key => $value) {
+            $data[$key] = e($value);
+        }
+        $this->repository->create($data);
         return Redirect::route(App::getlocale() . '.contacts.sent')
             ->with('success', true);
     }

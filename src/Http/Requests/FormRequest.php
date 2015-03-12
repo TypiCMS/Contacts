@@ -19,20 +19,4 @@ class FormRequest extends AbstractFormRequest {
         ];
         return $rules;
     }
-
-    /**
-     * Sanitize inputs
-     * 
-     * @return array
-     */
-    public function sanitize()
-    {
-        $input = [];
-        foreach ($this->all() as $key => $value) {
-            $input[$key] = e($value);
-        }
-
-        $this->replace($input);
-        return $this->all();
-    }
 }
