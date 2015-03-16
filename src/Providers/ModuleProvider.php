@@ -53,7 +53,7 @@ class ModuleProvider extends ServiceProvider
 
         $app->bind('TypiCMS\Modules\Contacts\Repositories\ContactInterface', function (Application $app) {
             $repository = new EloquentContact(new Contact);
-            if (! Config::get('app.cache')) {
+            if (! config('typicms.cache')) {
                 return $repository;
             }
             $laravelCache = new LaravelCache($app['cache'], 'contacts', 10);
