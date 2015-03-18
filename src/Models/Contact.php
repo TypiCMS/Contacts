@@ -2,8 +2,8 @@
 namespace TypiCMS\Modules\Contacts\Models;
 
 use TypiCMS\Models\Base;
+use TypiCMS\Modules\History\Traits\Historable;
 use TypiCMS\Presenters\PresentableTrait;
-use TypiCMS\Traits\Historable;
 
 class Contact extends Base
 {
