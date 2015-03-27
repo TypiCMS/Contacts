@@ -5,7 +5,7 @@
 
 @section('main')
 
-    <h2>@lang('contacts::global.name')</h2>
+    <h1>@lang('contacts::global.name')</h1>
 
     @if (! $errors->isEmpty())
         <div class="alert alert-danger alert-dismissable">
