@@ -8,6 +8,7 @@ use Lang;
 use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Contacts\Repositories\CacheDecorator;
 use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
+use TypiCMS\Modules\Contacts\Events\EventHandler;
 use TypiCMS\Observers\FileObserver;
 use TypiCMS\Services\Cache\LaravelCache;
 use View;
@@ -43,6 +44,11 @@ class ModuleProvider extends ServiceProvider
     {
 
         $app = $this->app;
+
+        /**
+         * Subscribe to events class
+         */
+        $app->events->subscribe(new EventHandler);
 
         /**
          * Register route service provider

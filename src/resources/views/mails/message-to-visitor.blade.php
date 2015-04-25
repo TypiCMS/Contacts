@@ -13,7 +13,7 @@
 
         <h2>@lang('contacts::global.Thank you for your contact request')</h2>
 
-        @include('registrations::mails._detail', ['model' => $model])
+        @include('contacts::mails._detail', ['model' => $model])
 
         <hr>
 
