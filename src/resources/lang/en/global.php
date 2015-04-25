@@ -5,4 +5,8 @@ return array(
     'New'  => 'New contact',
     'Edit' => 'Edit contact',
     'Back' => 'Back to contacts',
+    'Thank you for your contact request' => 'Thank you for your contact request',
+    'New contact request' => 'New contact request',
+    'New contact request from' => 'New contact request from',
+    'View online' => 'View online',
 );
