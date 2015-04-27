@@ -44,11 +44,11 @@ class RouteServiceProvider extends ServiceProvider {
              */
             if ($page = TypiCMS::getPageLinkedToModule('contacts')) {
                 foreach (config('translatable.locales') as $lang) {
-                    if ($page->hasTranslation($lang)) {
-                        $uri = $page->translate($lang)->uri;
-                        $router->get($uri, ['as' => $lang.'.contacts', 'uses' => 'PublicController@form']);
-                        $router->get($uri . '/sent', ['as' => $lang.'.contacts.sent', 'uses' => 'PublicController@sent']);
-                        $router->post($uri, ['as' => $lang . '.contacts.store', 'uses' => 'PublicController@store']);
+                    $options = $page->private ? ['middleware' => 'auth'] : [] ;
+                    if ($uri = $page->uri($lang)) {
+                        $router->get($uri, $options + ['as' => $lang.'.contacts', 'uses' => 'PublicController@form']);
+                        $router->get($uri . '/sent', $options + ['as' => $lang.'.contacts.sent', 'uses' => 'PublicController@sent']);
+                        $router->post($uri, $options + ['as' => $lang.'.contacts.store', 'uses' => 'PublicController@store']);
                     }
                 }
             }

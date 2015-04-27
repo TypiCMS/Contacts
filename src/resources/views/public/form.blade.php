@@ -1,11 +1,9 @@
-@extends('core::public.master')
+@extends('pages::public.master')
+<?php $page = TypiCMS::getPageLinkedToModule('contacts') ?>
 
-@section('title', trans('contacts::global.name') . ' – ' . $websiteTitle)
-@section('ogTitle', trans('contacts::global.name'))
+@section('bodyClass', 'body-contacts body-contacts-form body-page body-page-' . $page->id)
 
 @section('main')
-
-    <h1>@lang('contacts::global.name')</h1>
 
     @if (! $errors->isEmpty())
         <div class="alert alert-danger alert-dismissable">
@@ -18,6 +16,8 @@
             </ul>
         </div>
     @endif
+
+    {!! $page->body !!}
 
     {!! BootForm::open()->action(route($lang . '.contacts.store'))->multipart()->role('form') !!}
     {!! BootForm::token() !!}
