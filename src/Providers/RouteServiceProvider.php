@@ -1,9 +1,9 @@
 <?php
 namespace TypiCMS\Modules\Contacts\Providers;
 
-use Config;
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
+use TypiCMS\Facades\TypiCMS;
 
 class RouteServiceProvider extends ServiceProvider {
 
@@ -42,13 +42,14 @@ class RouteServiceProvider extends ServiceProvider {
             /**
              * Front office routes
              */
-            $routes = $this->app->make('TypiCMS.routes');
-            foreach (Config::get('translatable.locales') as $lang) {
-                if (isset($routes['contacts'][$lang])) {
-                    $uri = $routes['contacts'][$lang];
-                    $router->get($uri, ['as' => $lang.'.contacts', 'uses' => 'PublicController@form']);
-                    $router->get($uri . '/sent', ['as' => $lang.'.contacts.sent', 'uses' => 'PublicController@sent']);
-                    $router->post($uri, ['as' => $lang . '.contacts.store', 'uses' => 'PublicController@store']);
+            if ($page = TypiCMS::getPageLinkedToModule('contacts')) {
+                foreach (config('translatable.locales') as $lang) {
+                    $options = $page->private ? ['middleware' => 'auth'] : [] ;
+                    if ($uri = $page->uri($lang)) {
+                        $router->get($uri, $options + ['as' => $lang.'.contacts', 'uses' => 'PublicController@form']);
+                        $router->get($uri . '/sent', $options + ['as' => $lang.'.contacts.sent', 'uses' => 'PublicController@sent']);
+                        $router->post($uri, $options + ['as' => $lang.'.contacts.store', 'uses' => 'PublicController@store']);
+                    }
                 }
             }
 
