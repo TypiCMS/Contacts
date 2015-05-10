@@ -2,7 +2,7 @@
 namespace TypiCMS\Modules\Contacts\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
-use TypiCMS\Repositories\RepositoriesAbstract;
+use TypiCMS\Modules\Core\Repositories\RepositoriesAbstract;
 
 class EloquentContact extends RepositoriesAbstract implements ContactInterface
 {

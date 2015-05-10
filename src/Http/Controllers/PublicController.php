@@ -2,7 +2,7 @@
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
 use Redirect;
-use TypiCMS\Http\Controllers\BasePublicController;
+use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Repositories\ContactInterface;
 
