@@ -1,9 +1,9 @@
 <?php
 namespace TypiCMS\Modules\Contacts\Models;
 
+use Laracasts\Presenter\PresentableTrait;
 use TypiCMS\Models\Base;
 use TypiCMS\Modules\History\Traits\Historable;
-use TypiCMS\Presenters\PresentableTrait;
 
 class Contact extends Base
 {
