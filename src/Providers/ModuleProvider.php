@@ -1,6 +1,7 @@
 <?php
 namespace TypiCMS\Modules\Contacts\Providers;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Contacts\Models\Contact;
@@ -33,6 +34,12 @@ class ModuleProvider extends ServiceProvider
             __DIR__ . '/../database' => base_path('database'),
         ], 'migrations');
 
+        // Honeypot facade
+        AliasLoader::getInstance()->alias(
+            'Honeypot',
+            'Msurguy\Honeypot\HoneypotFacade'
+        );
+
         // Observers
         Contact::observe(new FileObserver);
     }
@@ -51,6 +58,11 @@ class ModuleProvider extends ServiceProvider
          * Register route service provider
          */
         $app->register('TypiCMS\Modules\Contacts\Providers\RouteServiceProvider');
+
+        /**
+         * Register Honeypot
+         */
+        $app->register('Msurguy\Honeypot\HoneypotServiceProvider');
 
         /**
          * Sidebar view composer

@@ -1,4 +1,4 @@
-{!! Honeypot::getFormHTML('my_name', 'my_time') !!}
+{!! Honeypot::generate('my_name', 'my_time') !!}
 {!! BootForm::hidden('language')->value(config('app.locale')) !!}
 
 <div class="row">

@@ -1,6 +1,6 @@
 {
     "name": "typicms/contacts",
-    "description": "",
+    "description": "A public form for contact requests and a back office interface to manage them.",
     "license": "MIT",
     "authors": [
         {
@@ -9,6 +9,7 @@
         }
     ],
     "require": {
+        "msurguy/honeypot": "~1.0.0",
         "typicms/core": "~2.2.0"
     },
     "autoload": {
