@@ -19,7 +19,7 @@ class SidebarViewComposer extends BaseSidebarViewComposer
                 $item->route('admin.contacts.index');
                 $item->append('admin.contacts.create');
                 $item->authorize(
-                    $this->user->hasAccess('contacts.index')
+                    $this->auth->hasAccess('contacts.index')
                 );
             });
         });
