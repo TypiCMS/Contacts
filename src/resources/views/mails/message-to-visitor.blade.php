@@ -17,7 +17,7 @@
 
         <hr>
 
-        {{ Blocks::build('signature-mail') }}
+        {!! Blocks::render('signature-mail') !!}
 
     </body>
 
