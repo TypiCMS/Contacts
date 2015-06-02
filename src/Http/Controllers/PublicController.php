@@ -1,7 +1,6 @@
 <?php
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
-use Redirect;
 use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Repositories\ContactInterface;
@@ -44,13 +43,13 @@ class PublicController extends BasePublicController
     {
         $data = [];
         foreach ($request->all() as $key => $value) {
-            $data[$key] = e($value);
+            $data[$key] = strip_tags($value);
         }
         $contact = $this->repository->create($data);
 
         event('NewContactRequest', [$contact]);
 
-        return Redirect::route(config('app.locale') . '.contacts.sent')
+        return redirect()->route(config('app.locale') . '.contacts.sent')
             ->with('success', true);
     }
 }
