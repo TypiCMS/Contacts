@@ -1,5 +1,6 @@
 {!! Honeypot::generate('my_name', 'my_time') !!}
-{!! BootForm::hidden('language')->value(config('app.locale')) !!}
+{!! BootForm::hidden('language')->value(isset($model->language) ? $model->language : config('app.locale')) !!}
+{!! BootForm::hidden('id') !!}
 
 <div class="row">
 
