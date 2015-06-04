@@ -17,7 +17,7 @@ class PublicController extends BasePublicController
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Support\Facades\Response
      */
     public function form()
     {
@@ -27,7 +27,7 @@ class PublicController extends BasePublicController
     /**
      * Display a page when form is sent.
      *
-     * @return Response
+     * @return \Illuminate\Support\Facades\Response
      */
     public function sent()
     {
@@ -40,7 +40,7 @@ class PublicController extends BasePublicController
     /**
      * Store a newly created resource in storage.
      *
-     * @return Response
+     * @return \Illuminate\Support\Facades\Response
      */
     public function store(FormRequest $request)
     {
