@@ -19,7 +19,7 @@
 
     {!! $page->body !!}
 
-    {!! BootForm::open()->action(route($lang . '.contacts.store'))->multipart()->role('form') !!}
+    {!! BootForm::open()->action(route($lang . '.contacts.store'))->multipart() !!}
 
     @include('contacts::_fields')
 
