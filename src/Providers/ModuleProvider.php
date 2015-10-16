@@ -70,6 +70,13 @@ class ModuleProvider extends ServiceProvider
          */
         $app->view->composer('core::admin._sidebar', 'TypiCMS\Modules\Contacts\Composers\SidebarViewComposer');
 
+        /**
+         * Add the page in the view.
+         */
+        $app->view->composer('contacts::public.*', function ($view) {
+            $view->page = TypiCMS::getPageLinkedToModule('contacts');
+        });
+
         $app->bind('TypiCMS\Modules\Contacts\Repositories\ContactInterface', function (Application $app) {
             $repository = new EloquentContact(new Contact);
             if (! config('typicms.cache')) {
@@ -78,13 +85,6 @@ class ModuleProvider extends ServiceProvider
             $laravelCache = new LaravelCache($app['cache'], 'contacts', 10);
 
             return new CacheDecorator($repository, $laravelCache);
-        });
-
-        /**
-         * Return the page linked to this module (for @inject in views)
-         */
-        $app->singleton('typicms.contacts.page', function (Application $app) {
-            return TypiCMS::getPageLinkedToModule('contacts');
         });
 
     }

@@ -1,5 +1,4 @@
 @extends('pages::public.master')
-@inject('page', 'typicms.contacts.page')
 
 @section('bodyClass', 'body-contacts body-contact-sent body-page body-page-' . $page->id)
 
