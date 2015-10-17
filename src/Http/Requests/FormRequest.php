@@ -1,10 +1,11 @@
 <?php
+
 namespace TypiCMS\Modules\Contacts\Http\Requests;
 
 use TypiCMS\Modules\Core\Http\Requests\AbstractFormRequest;
 
-class FormRequest extends AbstractFormRequest {
-
+class FormRequest extends AbstractFormRequest
+{
     public function rules()
     {
         $rules = [
@@ -17,6 +18,7 @@ class FormRequest extends AbstractFormRequest {
             'my_name'    => 'honeypot',
             'my_time'    => 'required|honeytime:5',
         ];
+
         return $rules;
     }
 }

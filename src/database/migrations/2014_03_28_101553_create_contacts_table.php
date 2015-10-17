@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateContactsTable extends Migration
 {
@@ -12,7 +12,6 @@ class CreateContactsTable extends Migration
      */
     public function up()
     {
-
         Schema::create('contacts', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -39,7 +38,6 @@ class CreateContactsTable extends Migration
 
             $table->timestamps();
         });
-
     }
 
     /**
@@ -51,5 +49,4 @@ class CreateContactsTable extends Migration
     {
         Schema::drop('contacts');
     }
-
 }

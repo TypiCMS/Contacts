@@ -1,9 +1,10 @@
 <?php
+
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
-use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Repositories\ContactInterface;
+use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 
 class PublicController extends BasePublicController
 {
@@ -34,6 +35,7 @@ class PublicController extends BasePublicController
         if (session('success')) {
             return view('contacts::public.sent');
         }
+
         return redirect(url('/'));
     }
 
@@ -52,7 +54,7 @@ class PublicController extends BasePublicController
 
         event('NewContactRequest', [$contact]);
 
-        return redirect()->route(config('app.locale') . '.contacts.sent')
+        return redirect()->route(config('app.locale').'.contacts.sent')
             ->with('success', true);
     }
 }
