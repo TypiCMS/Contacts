@@ -4,7 +4,7 @@
 
 @section('main')
 
-    @if (! $errors->isEmpty())
+    @if (!$errors->isEmpty())
         <div class="alert alert-danger alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             @lang('db.message when errors in form').
