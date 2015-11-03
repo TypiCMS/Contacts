@@ -50,7 +50,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="8" typi-pagination></td>
+                    <td colspan="6" typi-pagination></td>
                 </tr>
             </tfoot>
         </table>
