@@ -8,7 +8,9 @@
     <body>
 
         <a href="{{ url('/') }}">
-            {!! TypiCMS::logo() !!}
+            @if (TypiCMS::hasLogo())
+                @include('core::public._logo')
+            @endif
         </a>
 
         <h2>@lang('contacts::global.Thank you for your contact request')</h2>
