@@ -15,6 +15,32 @@ class AdminController extends BaseAdminController
     }
 
     /**
+     * Create form for a new resource.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        $model = $this->repository->getModel();
+
+        return view('core::admin.create')
+            ->with(compact('model'));
+    }
+
+    /**
+     * Edit form for the specified resource.
+     *
+     * @param \TypiCMS\Modules\Contacts\Models\Contact $contact
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit(Contact $contact)
+    {
+        return view('core::admin.edit')
+            ->with(['model' => $contact]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param \TypiCMS\Modules\Contacts\Http\Requests\FormRequest $request
