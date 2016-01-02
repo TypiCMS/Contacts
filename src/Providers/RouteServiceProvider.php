@@ -18,20 +18,6 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'TypiCMS\Modules\Contacts\Http\Controllers';
 
     /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @param \Illuminate\Routing\Router $router
-     *
-     * @return void
-     */
-    public function boot(Router $router)
-    {
-        parent::boot($router);
-
-        $router->model('contacts', 'TypiCMS\Modules\Contacts\Models\Contact');
-    }
-
-    /**
      * Define the routes for the application.
      *
      * @param \Illuminate\Routing\Router $router
@@ -59,12 +45,18 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->resource('admin/contacts', 'AdminController');
+            $router->get('admin/contacts', ['as' => 'admin.contacts.index', 'uses' => 'AdminController@index']);
+            $router->get('admin/contacts/create', ['as' => 'admin.contacts.create', 'uses' => 'AdminController@create']);
+            $router->get('admin/contacts/{contact}/edit', ['as' => 'admin.contacts.edit', 'uses' => 'AdminController@edit']);
+            $router->post('admin/contacts', ['as' => 'admin.contacts.store', 'uses' => 'AdminController@store']);
+            $router->put('admin/contacts/{contact}', ['as' => 'admin.contacts.update', 'uses' => 'AdminController@update']);
 
             /*
              * API routes
              */
-            $router->resource('api/contacts', 'ApiController');
+            $router->get('api/contacts', ['as' => 'api.contacts.index', 'uses' => 'ApiController@index']);
+            $router->put('api/contacts/{contact}', ['as' => 'api.contacts.update', 'uses' => 'ApiController@update']);
+            $router->delete('api/contacts/{contact}', ['as' => 'api.contacts.destroy', 'uses' => 'ApiController@destroy']);
         });
     }
 }
