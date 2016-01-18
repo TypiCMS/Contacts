@@ -8,7 +8,7 @@ class FormRequest extends AbstractFormRequest
 {
     public function rules()
     {
-        $rules = [
+        return [
             'email'      => 'required|email|max:255',
             'title'      => 'required|max:255',
             'first_name' => 'required|max:255',
@@ -18,7 +18,5 @@ class FormRequest extends AbstractFormRequest
             'my_name'    => 'honeypot',
             'my_time'    => 'required|honeytime:5',
         ];
-
-        return $rules;
     }
 }
