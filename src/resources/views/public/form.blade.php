@@ -26,4 +26,4 @@
 
     {!! BootForm::close() !!}
 
-@stop
+@endsection

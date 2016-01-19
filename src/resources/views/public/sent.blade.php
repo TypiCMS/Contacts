@@ -10,4 +10,4 @@
         <h1>@lang('db.message when contact form is sent')</h1>
     </div>
 
-@stop
+@endsection
