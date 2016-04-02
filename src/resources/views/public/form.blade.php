@@ -1,6 +1,6 @@
 @extends('pages::public.master')
 
-@section('bodyClass', 'body-contacts body-contacts-form body-page body-page-' . $page->id)
+@section('bodyClass', 'body-contacts body-contacts-form body-page body-page-'.$page->id)
 
 @section('main')
 
@@ -18,7 +18,7 @@
 
     {!! $page->body !!}
 
-    {!! BootForm::open()->action(route($lang . '.contacts.store'))->multipart() !!}
+    {!! BootForm::open()->action(route($lang.'.contacts.store'))->multipart() !!}
 
     @include('contacts::_fields')
 

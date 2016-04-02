@@ -45,18 +45,18 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->get('admin/contacts', ['as' => 'admin.contacts.index', 'uses' => 'AdminController@index']);
-            $router->get('admin/contacts/create', ['as' => 'admin.contacts.create', 'uses' => 'AdminController@create']);
-            $router->get('admin/contacts/{contact}/edit', ['as' => 'admin.contacts.edit', 'uses' => 'AdminController@edit']);
-            $router->post('admin/contacts', ['as' => 'admin.contacts.store', 'uses' => 'AdminController@store']);
-            $router->put('admin/contacts/{contact}', ['as' => 'admin.contacts.update', 'uses' => 'AdminController@update']);
+            $router->get('admin/contacts', 'AdminController@index')->name('admin::index-contacts');
+            $router->get('admin/contacts/create', 'AdminController@create')->name('admin::create-contacts');
+            $router->get('admin/contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contacts');
+            $router->post('admin/contacts', 'AdminController@store')->name('admin::store-contacts');
+            $router->put('admin/contacts/{contact}', 'AdminController@update')->name('admin::update-contacts');
 
             /*
              * API routes
              */
-            $router->get('api/contacts', ['as' => 'api.contacts.index', 'uses' => 'ApiController@index']);
-            $router->put('api/contacts/{contact}', ['as' => 'api.contacts.update', 'uses' => 'ApiController@update']);
-            $router->delete('api/contacts/{contact}', ['as' => 'api.contacts.destroy', 'uses' => 'ApiController@destroy']);
+            $router->get('api/contacts', 'ApiController@index')->name('api::index-contacts');
+            $router->put('api/contacts/{contact}', 'ApiController@update')->name('api::update-contacts');
+            $router->delete('api/contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contacts');
         });
     }
 }
