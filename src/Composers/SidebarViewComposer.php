@@ -3,6 +3,8 @@
 namespace TypiCMS\Modules\Contacts\Composers;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Sidebar\SidebarGroup;
 use Maatwebsite\Sidebar\SidebarItem;
 
@@ -19,7 +21,7 @@ class SidebarViewComposer
                 $item->route('admin::index-contacts');
                 $item->append('admin::create-contacts');
                 $item->authorize(
-                    auth()->user()->can('index-contacts')
+                    Gate::allows('index-contacts')
                 );
             });
         });
