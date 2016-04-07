@@ -15,7 +15,7 @@
 
         <h2>@lang('contacts::global.New contact request from') {{ $model->first_name }} {{ $model->last_name }}</h2>
 
-        <p><a class="btn btn-primary" href="{{ route('admin.contacts.show', $model->id) }}">@lang('contacts::global.View online')</a></p>
+        <p><a class="btn btn-primary" href="{{ route('admin.contacts.edit', $model->id) }}">@lang('contacts::global.View online')</a></p>
 
         @include('contacts::mails._detail', ['model' => $model])
 
