@@ -18,7 +18,7 @@ class SidebarViewComposer
                 $item->icon = config('typicms.contacts.sidebar.icon', 'icon fa fa-fw fa-envelope');
                 $item->weight = config('typicms.contacts.sidebar.weight');
                 $item->route('admin::index-contacts');
-                $item->append('admin::create-contacts');
+                $item->append('admin::create-contact');
                 $item->authorize(
                     Gate::allows('index-contacts')
                 );

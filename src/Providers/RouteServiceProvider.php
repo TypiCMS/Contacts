@@ -46,17 +46,17 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->get('admin/contacts', 'AdminController@index')->name('admin::index-contacts');
-            $router->get('admin/contacts/create', 'AdminController@create')->name('admin::create-contacts');
-            $router->get('admin/contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contacts');
-            $router->post('admin/contacts', 'AdminController@store')->name('admin::store-contacts');
-            $router->put('admin/contacts/{contact}', 'AdminController@update')->name('admin::update-contacts');
+            $router->get('admin/contacts/create', 'AdminController@create')->name('admin::create-contact');
+            $router->get('admin/contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact');
+            $router->post('admin/contacts', 'AdminController@store')->name('admin::store-contact');
+            $router->put('admin/contacts/{contact}', 'AdminController@update')->name('admin::update-contact');
 
             /*
              * API routes
              */
             $router->get('api/contacts', 'ApiController@index')->name('api::index-contacts');
-            $router->put('api/contacts/{contact}', 'ApiController@update')->name('api::update-contacts');
-            $router->delete('api/contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contacts');
+            $router->put('api/contacts/{contact}', 'ApiController@update')->name('api::update-contact');
+            $router->delete('api/contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contact');
         });
     }
 }
