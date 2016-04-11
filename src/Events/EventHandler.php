@@ -25,7 +25,8 @@ class EventHandler
         Mail::send('contacts::mails.message-to-webmaster', ['model' => $model], function (Message $message) use ($model, $webmaster) {
             $subject = '['.TypiCMS::title().'] ';
             $subject .= trans('contacts::global.New contact request');
-            $message->from($model->email)->to($webmaster)->subject($subject);
+            $sender = config('mail.from.address');
+            $message->from($model->email)->sender($sender)->to($webmaster)->subject($subject);
         });
     }
 
