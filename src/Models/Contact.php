@@ -13,21 +13,5 @@ class Contact extends Base
 
     protected $presenter = 'TypiCMS\Modules\Contacts\Presenters\ModulePresenter';
 
-    protected $fillable = [
-        'title',
-        'first_name',
-        'last_name',
-        'email',
-        'language',
-        'website',
-        'company',
-        'address',
-        'postcode',
-        'city',
-        'country',
-        'phone',
-        'mobile',
-        'fax',
-        'message',
-    ];
+    protected $guarded = ['id'];
 }
