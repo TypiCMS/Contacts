@@ -15,6 +15,7 @@ class SidebarViewComposer
             $group->id = 'contacts';
             $group->weight = 20;
             $group->addItem(trans('contacts::global.name'), function (SidebarItem $item) {
+                $item->id = 'contacts';
                 $item->icon = config('typicms.contacts.sidebar.icon', 'icon fa fa-fw fa-envelope');
                 $item->weight = config('typicms.contacts.sidebar.weight');
                 $item->route('admin::index-contacts');
