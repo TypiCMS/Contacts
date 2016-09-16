@@ -3,7 +3,6 @@
 namespace TypiCMS\Modules\Contacts\Providers;
 
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Contacts\Events\EventHandler;
 use TypiCMS\Modules\Contacts\Models\Contact;
