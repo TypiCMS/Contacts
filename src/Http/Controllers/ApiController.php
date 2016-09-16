@@ -4,7 +4,7 @@ namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
 use Illuminate\Support\Facades\Request;
 use TypiCMS\Modules\Contacts\Models\Contact;
-use TypiCMS\Modules\Contacts\Repositories\ContactInterface as Repository;
+use TypiCMS\Modules\Contacts\Repositories\EloquentContact as Repository;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 
 class ApiController extends BaseApiController

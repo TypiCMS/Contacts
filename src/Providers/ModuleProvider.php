@@ -7,11 +7,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Contacts\Events\EventHandler;
 use TypiCMS\Modules\Contacts\Models\Contact;
-use TypiCMS\Modules\Contacts\Repositories\CacheDecorator;
 use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 use TypiCMS\Modules\Core\Observers\FileObserver;
-use TypiCMS\Modules\Core\Services\Cache\LaravelCache;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -75,14 +73,6 @@ class ModuleProvider extends ServiceProvider
             $view->page = TypiCMS::getPageLinkedToModule('contacts');
         });
 
-        $app->bind('TypiCMS\Modules\Contacts\Repositories\ContactInterface', function (Application $app) {
-            $repository = new EloquentContact(new Contact());
-            if (!config('typicms.cache')) {
-                return $repository;
-            }
-            $laravelCache = new LaravelCache($app['cache'], 'contacts', 10);
-
-            return new CacheDecorator($repository, $laravelCache);
-        });
+        $app->bind('Contacts', EloquentContact::class);
     }
 }

@@ -13,5 +13,5 @@ class Contact extends Base
 
     protected $presenter = 'TypiCMS\Modules\Contacts\Presenters\ModulePresenter';
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'exit'];
 }

@@ -4,12 +4,12 @@ namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Models\Contact;
-use TypiCMS\Modules\Contacts\Repositories\ContactInterface;
+use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 
 class AdminController extends BaseAdminController
 {
-    public function __construct(ContactInterface $contact)
+    public function __construct(EloquentContact $contact)
     {
         parent::__construct($contact);
     }
