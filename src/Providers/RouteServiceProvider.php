@@ -44,7 +44,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function(Router $router) {
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
                 $router->get('contacts', 'AdminController@index')->name('admin::index-contacts');
                 $router->get('contacts/create', 'AdminController@create')->name('admin::create-contact');
                 $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact');
@@ -55,7 +55,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * API routes
              */
-            $router->group(['middleware' => 'api', 'prefix' => 'api'], function(Router $router) {
+            $router->group(['middleware' => 'api', 'prefix' => 'api'], function (Router $router) {
                 $router->get('contacts', 'ApiController@index')->name('api::index-contacts');
                 $router->put('contacts/{contact}', 'ApiController@update')->name('api::update-contact');
                 $router->delete('contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contact');
