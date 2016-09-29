@@ -3,7 +3,7 @@
 namespace TypiCMS\Modules\Contacts\Repositories;
 
 use TypiCMS\Modules\Contacts\Models\Contact;
-use TypiCMS\Modules\Core\EloquentRepository;
+use TypiCMS\Modules\Core\Repositories\EloquentRepository;
 
 class EloquentContact extends EloquentRepository
 {

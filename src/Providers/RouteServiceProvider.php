@@ -44,18 +44,22 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->get('admin/contacts', 'AdminController@index')->name('admin::index-contacts');
-            $router->get('admin/contacts/create', 'AdminController@create')->name('admin::create-contact');
-            $router->get('admin/contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact');
-            $router->post('admin/contacts', 'AdminController@store')->name('admin::store-contact');
-            $router->put('admin/contacts/{contact}', 'AdminController@update')->name('admin::update-contact');
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function(Router $router) {
+                $router->get('contacts', 'AdminController@index')->name('admin::index-contacts');
+                $router->get('contacts/create', 'AdminController@create')->name('admin::create-contact');
+                $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact');
+                $router->post('contacts', 'AdminController@store')->name('admin::store-contact');
+                $router->put('contacts/{contact}', 'AdminController@update')->name('admin::update-contact');
+            });
 
             /*
              * API routes
              */
-            $router->get('api/contacts', 'ApiController@index')->name('api::index-contacts');
-            $router->put('api/contacts/{contact}', 'ApiController@update')->name('api::update-contact');
-            $router->delete('api/contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contact');
+            $router->group(['middleware' => 'api', 'prefix' => 'api'], function(Router $router) {
+                $router->get('contacts', 'ApiController@index')->name('api::index-contacts');
+                $router->put('contacts/{contact}', 'ApiController@update')->name('api::update-contact');
+                $router->delete('contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contact');
+            });
         });
     }
 }
