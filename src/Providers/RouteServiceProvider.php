@@ -50,15 +50,8 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact');
                 $router->post('contacts', 'AdminController@store')->name('admin::store-contact');
                 $router->put('contacts/{contact}', 'AdminController@update')->name('admin::update-contact');
-            });
-
-            /*
-             * API routes
-             */
-            $router->group(['middleware' => 'api', 'prefix' => 'api'], function (Router $router) {
-                $router->get('contacts', 'ApiController@index')->name('api::index-contacts');
-                $router->put('contacts/{contact}', 'ApiController@update')->name('api::update-contact');
-                $router->delete('contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contact');
+                $router->patch('contacts/{contact}', 'AdminController@ajaxUpdate');
+                $router->delete('contacts/{contact}', 'AdminController@destroy')->name('admin::destroy-contact');
             });
         });
     }
