@@ -8,8 +8,14 @@
             "email": "sdebacker@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/TypiCMS/Honeypot"
+        }
+    ],
     "require": {
-        "msurguy/honeypot": "~1.0.0",
+        "msurguy/honeypot": "dev-master",
         "laravel/framework": "~5.4.0"
     },
     "autoload": {
