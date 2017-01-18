@@ -32,7 +32,7 @@ class RouteServiceProvider extends ServiceProvider
              */
             if ($page = TypiCMS::getPageLinkedToModule('contacts')) {
                 $options = $page->private ? ['middleware' => 'auth'] : [];
-                foreach (config('translatable-bootforms.locales') as $lang) {
+                foreach (locales() as $lang) {
                     if ($page->translate('status', $lang) && $uri = $page->uri($lang)) {
                         $router->get($uri, $options + ['as' => $lang.'.contacts', 'uses' => 'PublicController@form']);
                         $router->get($uri.'/sent', $options + ['as' => $lang.'.contacts.sent', 'uses' => 'PublicController@sent']);
