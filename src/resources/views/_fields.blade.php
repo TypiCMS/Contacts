@@ -5,28 +5,28 @@
 <div class="row">
 
     <div class="col-sm-2">
-        {!! BootForm::select('<span class="fa fa-asterisk"></span> '.__('validation.attributes.title'), 'title', ['' => '', 'mr' => __('validation.attributes.mr'), 'mrs' => __('validation.attributes.mrs')]) !!}
+        {!! BootForm::select('<span class="fa fa-asterisk"></span> '.__('Title'), 'title', ['' => '', 'mr' => __('Mr'), 'mrs' => __('Mrs')]) !!}
     </div>
     <div class="col-sm-5">
-        {!! BootForm::text('<span class="fa fa-asterisk"></span> '.__('validation.attributes.first_name'), 'first_name') !!}
+        {!! BootForm::text('<span class="fa fa-asterisk"></span> '.__('First name'), 'first_name') !!}
     </div>
     <div class="col-sm-5">
-        {!! BootForm::text('<span class="fa fa-asterisk"></span> '.__('validation.attributes.last_name'), 'last_name') !!}
+        {!! BootForm::text('<span class="fa fa-asterisk"></span> '.__('Last name'), 'last_name') !!}
     </div>
 
 </div>
 
-{!! BootForm::email('<span class="fa fa-asterisk"></span> '.__('validation.attributes.email'), 'email') !!}
-{{-- BootForm::text(__('validation.attributes.website'), 'website') --}}
-{{-- BootForm::text(__('validation.attributes.company'), 'company') --}}
-{{-- BootForm::text(__('validation.attributes.address'), 'address') --}}
-{{-- BootForm::text(__('validation.attributes.postcode'), 'postcode') --}}
-{{-- BootForm::text(__('validation.attributes.city'), 'city') --}}
-{{-- BootForm::text(__('validation.attributes.country'), 'country') --}}
-{{-- BootForm::text(__('validation.attributes.phone'), 'phone') --}}
-{{-- BootForm::text(__('validation.attributes.mobile'), 'mobile') --}}
-{{-- BootForm::text(__('validation.attributes.fax'), 'fax') --}}
-{!! BootForm::textarea('<span class="fa fa-asterisk"></span> '.__('validation.attributes.message'), 'message') !!}
+{!! BootForm::email('<span class="fa fa-asterisk"></span> '.__('Email'), 'email') !!}
+{{-- BootForm::text(__('Website'), 'website') --}}
+{{-- BootForm::text(__('Company'), 'company') --}}
+{{-- BootForm::text(__('Address'), 'address') --}}
+{{-- BootForm::text(__('Postcode'), 'postcode') --}}
+{{-- BootForm::text(__('City'), 'city') --}}
+{{-- BootForm::text(__('Country'), 'country') --}}
+{{-- BootForm::text(__('Phone'), 'phone') --}}
+{{-- BootForm::text(__('Mobile'), 'mobile') --}}
+{{-- BootForm::text(__('Fax'), 'fax') --}}
+{!! BootForm::textarea('<span class="fa fa-asterisk"></span> '.__('Message'), 'message') !!}
 
 <div class="form-group">
     <span class="fa fa-asterisk"></span> @lang('global.Mandatory fields')

@@ -22,7 +22,7 @@
 
     @include('contacts::_fields')
 
-    <button class="btn-primary btn btn-block btn-lg" type="submit">@lang('validation.attributes.send')</button>
+    <button class="btn-primary btn btn-block btn-lg" type="submit">{{ __('Send') }}</button>
 
     {!! BootForm::close() !!}
 
