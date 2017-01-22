@@ -29,16 +29,16 @@
                 <tr>
                     <td colspan="2"></td>
                     <td>
-                        <input st-search="first_name" class="form-control input-sm" placeholder="@lang('global.Search')…" type="text">
+                        <input st-search="first_name" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
                     </td>
                     <td>
-                        <input st-search="last_name" class="form-control input-sm" placeholder="@lang('global.Search')…" type="text">
+                        <input st-search="last_name" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
                     </td>
                     <td>
-                        <input st-search="email" class="form-control input-sm" placeholder="@lang('global.Search')…" type="text">
+                        <input st-search="email" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
                     </td>
                     <td>
-                        <input st-search="message" class="form-control input-sm" placeholder="@lang('global.Search')…" type="text">
+                        <input st-search="message" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
                     </td>
                 </tr>
             </thead>

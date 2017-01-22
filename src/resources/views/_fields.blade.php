@@ -29,5 +29,5 @@
 {!! BootForm::textarea('<span class="fa fa-asterisk"></span> '.__('Message'), 'message') !!}
 
 <div class="form-group">
-    <span class="fa fa-asterisk"></span> @lang('global.Mandatory fields')
+    <span class="fa fa-asterisk"></span> @lang('Mandatory fields')
 </div>
