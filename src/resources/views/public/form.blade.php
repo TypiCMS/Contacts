@@ -2,7 +2,7 @@
 
 @section('bodyClass', 'body-contacts body-contacts-form body-page body-page-'.$page->id)
 
-@section('main')
+@section('content')
 
     @if (!$errors->isEmpty())
         <div class="alert alert-danger alert-dismissable">

@@ -2,7 +2,7 @@
 
 @section('bodyClass', 'body-contacts body-contact-sent body-page body-page-'.$page->id)
 
-@section('main')
+@section('content')
 
     {!! $page->body !!}
 

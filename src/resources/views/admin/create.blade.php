@@ -2,7 +2,7 @@
 
 @section('title', __('contacts::global.New'))
 
-@section('main')
+@section('content')
 
     @include('core::admin._button-back', ['module' => 'contacts'])
     <h1>
