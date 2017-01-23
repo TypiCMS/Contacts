@@ -54,7 +54,7 @@ class PublicController extends BasePublicController
 
         event('NewContactRequest', [$contact]);
 
-        return redirect()->route(config('app.locale').'.contacts.sent')
+        return redirect()->route(config('app.locale').'::contact-sent')
             ->with('success', true);
     }
 }

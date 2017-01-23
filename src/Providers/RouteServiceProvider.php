@@ -34,9 +34,9 @@ class RouteServiceProvider extends ServiceProvider
                 $options = $page->private ? ['middleware' => 'auth'] : [];
                 foreach (locales() as $lang) {
                     if ($page->translate('status', $lang) && $uri = $page->uri($lang)) {
-                        $router->get($uri, $options + ['as' => $lang.'.contacts', 'uses' => 'PublicController@form']);
-                        $router->get($uri.'/sent', $options + ['as' => $lang.'.contacts.sent', 'uses' => 'PublicController@sent']);
-                        $router->post($uri, $options + ['as' => $lang.'.contacts.store', 'uses' => 'PublicController@store']);
+                        $router->get($uri, $options + ['uses' => 'PublicController@form'])->name($lang.'::index-contacts');
+                        $router->get($uri.'/sent', $options + ['uses' => 'PublicController@sent'])->name($lang.'::contact-sent');
+                        $router->post($uri, $options + ['uses' => 'PublicController@store'])->name($lang.'::store-contact');
                     }
                 }
             }
