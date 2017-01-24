@@ -21,10 +21,10 @@
                 <tr>
                     <th class="delete"></th>
                     <th class="edit"></th>
-                    <th st-sort="first_name" class="first_name st-sort">@lang('First name')</th>
-                    <th st-sort="last_name" class="last_name st-sort">@lang('Last name')</th>
-                    <th st-sort="email" class="email st-sort">@lang('Email')</th>
-                    <th st-sort="message" class="message st-sort">@lang('Message')</th>
+                    <th st-sort="first_name" class="first_name st-sort">{{ __('First name') }}</th>
+                    <th st-sort="last_name" class="last_name st-sort">{{ __('Last name') }}</th>
+                    <th st-sort="email" class="email st-sort">{{ __('Email') }}</th>
+                    <th st-sort="message" class="message st-sort">{{ __('Message') }}</th>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
