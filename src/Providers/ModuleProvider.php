@@ -4,6 +4,8 @@ namespace TypiCMS\Modules\Contacts\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Msurguy\Honeypot\HoneypotFacade;
+use TypiCMS\Modules\Contacts\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Contacts\Events\EventHandler;
 use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
@@ -32,10 +34,7 @@ class ModuleProvider extends ServiceProvider
         ], 'migrations');
 
         // Honeypot facade
-        AliasLoader::getInstance()->alias(
-            'Honeypot',
-            'Msurguy\Honeypot\HoneypotFacade'
-        );
+        AliasLoader::getInstance()->alias('Honeypot', HoneypotFacade::class);
 
         // Observers
         Contact::observe(new FileObserver());
@@ -53,7 +52,7 @@ class ModuleProvider extends ServiceProvider
         /*
          * Register route service provider
          */
-        $app->register('TypiCMS\Modules\Contacts\Providers\RouteServiceProvider');
+        $app->register(RouteServiceProvider::class);
 
         /*
          * Register Honeypot
@@ -63,7 +62,7 @@ class ModuleProvider extends ServiceProvider
         /*
          * Sidebar view composer
          */
-        $app->view->composer('core::admin._sidebar', 'TypiCMS\Modules\Contacts\Composers\SidebarViewComposer');
+        $app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
 
         /*
          * Add the page in the view.
