@@ -1,4 +1,5 @@
-@include('core::admin._buttons-form')
+@component('core::admin._buttons-form', ['model' => $model])
+@endcomponent
 
 @include('contacts::_fields')
 
