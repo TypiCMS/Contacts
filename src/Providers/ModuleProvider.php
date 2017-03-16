@@ -10,7 +10,6 @@ use TypiCMS\Modules\Contacts\Events\EventHandler;
 use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
-use TypiCMS\Modules\Core\Observers\FileObserver;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -35,9 +34,6 @@ class ModuleProvider extends ServiceProvider
 
         // Honeypot facade
         AliasLoader::getInstance()->alias('Honeypot', HoneypotFacade::class);
-
-        // Observers
-        Contact::observe(new FileObserver());
     }
 
     public function register()
