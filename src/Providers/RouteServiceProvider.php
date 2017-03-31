@@ -50,7 +50,7 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact');
                 $router->post('contacts', 'AdminController@store')->name('admin::store-contact');
                 $router->put('contacts/{contact}', 'AdminController@update')->name('admin::update-contact');
-                $router->patch('contacts/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-contact');
+                $router->patch('contacts/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-contact-ajax');
                 $router->delete('contacts/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-contact');
             });
         });
