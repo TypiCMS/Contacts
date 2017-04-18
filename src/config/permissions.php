@@ -2,11 +2,9 @@
 
 return [
     'contacts' => [
-        'index-contacts' => 'Show list',
+        'index-contacts' => 'View list',
         'create-contact' => 'Create',
-        'store-contact' => 'Store',
         'edit-contact' => 'Edit',
-        'update-contact' => 'Update',
         'destroy-contact' => 'Destroy',
     ],
 ];
