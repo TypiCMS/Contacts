@@ -11,7 +11,7 @@ class SidebarViewComposer
 {
     public function compose(View $view)
     {
-        $view->sidebar->group(__('global.menus.contacts'), function (SidebarGroup $group) {
+        $view->sidebar->group(__('Contacts'), function (SidebarGroup $group) {
             $group->id = 'contacts';
             $group->weight = 20;
             $group->addItem(__('contacts::global.name'), function (SidebarItem $item) {
