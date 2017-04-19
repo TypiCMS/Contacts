@@ -45,13 +45,13 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
-                $router->get('contacts', 'AdminController@index')->name('admin::index-contacts');
-                $router->get('contacts/create', 'AdminController@create')->name('admin::create-contact');
-                $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact');
-                $router->post('contacts', 'AdminController@store')->name('admin::store-contact');
-                $router->put('contacts/{contact}', 'AdminController@update')->name('admin::update-contact');
-                $router->patch('contacts/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-contact-ajax');
-                $router->delete('contacts/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-contact');
+                $router->get('contacts', 'AdminController@index')->name('admin::index-contacts')->middleware('can:see-all-contacts');
+                $router->get('contacts/create', 'AdminController@create')->name('admin::create-contact')->middleware('can:create-contact');
+                $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact')->middleware('can:update-contact');
+                $router->post('contacts', 'AdminController@store')->name('admin::store-contact')->middleware('can:create-contact');
+                $router->put('contacts/{contact}', 'AdminController@update')->name('admin::update-contact')->middleware('can:update-contact');
+                $router->patch('contacts/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-contact-ajax')->middleware('can:update-contact');
+                $router->delete('contacts/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-contact')->middleware('can:delete-contact');
             });
         });
     }

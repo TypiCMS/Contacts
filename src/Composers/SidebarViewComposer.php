@@ -11,6 +11,9 @@ class SidebarViewComposer
 {
     public function compose(View $view)
     {
+        if (Gate::denies('see-all-contacts')) {
+            return;
+        }
         $view->sidebar->group(__('Contacts'), function (SidebarGroup $group) {
             $group->id = 'contacts';
             $group->weight = 20;
@@ -20,9 +23,6 @@ class SidebarViewComposer
                 $item->weight = config('typicms.contacts.sidebar.weight');
                 $item->route('admin::index-contacts');
                 $item->append('admin::create-contact');
-                $item->authorize(
-                    Gate::allows('index-contacts')
-                );
             });
         });
     }
