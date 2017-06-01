@@ -13,7 +13,7 @@
             @endif
         </a>
 
-        <h2>@lang('contacts::global.Thank you for your contact request')</h2>
+        <h2>@lang('Thank you for your contact request')</h2>
 
         @include('contacts::mails._detail', ['model' => $model])
 

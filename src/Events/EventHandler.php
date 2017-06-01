@@ -17,14 +17,14 @@ class EventHandler
         // Send a mail to visitor
         Mail::send('contacts::mails.message-to-visitor', ['model' => $model], function (Message $message) use ($model, $webmaster) {
             $subject = '['.TypiCMS::title().'] ';
-            $subject .= __('contacts::global.Thank you for your contact request');
+            $subject .= __('Thank you for your contact request');
             $message->from($webmaster)->to($model->email)->subject($subject);
         });
 
         // Send a mail to webmaster
         Mail::send('contacts::mails.message-to-webmaster', ['model' => $model], function (Message $message) use ($model, $webmaster) {
             $subject = '['.TypiCMS::title().'] ';
-            $subject .= __('contacts::global.New contact request');
+            $subject .= __('New contact request');
             $sender = config('mail.from.address');
             $message->from($model->email)->sender($sender)->to($webmaster)->subject($subject);
         });

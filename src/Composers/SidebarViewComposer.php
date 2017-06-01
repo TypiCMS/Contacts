@@ -17,7 +17,7 @@ class SidebarViewComposer
         $view->sidebar->group(__('Contacts'), function (SidebarGroup $group) {
             $group->id = 'contacts';
             $group->weight = 20;
-            $group->addItem(__('contacts::global.name'), function (SidebarItem $item) {
+            $group->addItem(__('Contacts'), function (SidebarItem $item) {
                 $item->id = 'contacts';
                 $item->icon = config('typicms.contacts.sidebar.icon', 'icon fa fa-fw fa-envelope');
                 $item->weight = config('typicms.contacts.sidebar.weight');
