@@ -23,14 +23,6 @@
             "TypiCMS\\Modules\\Contacts\\": "src/"
         }
     },
-    "scripts": {
-        "post-install-cmd": [
-            "php artisan translations:add /vendor/typicms/Contacts/src/resources/lang"
-        ],
-        "post-update-cmd": [
-            "php artisan translations:add /vendor/typicms/Contacts/src/resources/lang"
-        ]
-    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
