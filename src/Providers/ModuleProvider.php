@@ -34,6 +34,18 @@ class ModuleProvider extends ServiceProvider
 
         // Honeypot facade
         AliasLoader::getInstance()->alias('Honeypot', HoneypotFacade::class);
+
+        /*
+         * Sidebar view composer
+         */
+        $this->app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
+
+        /*
+         * Add the page in the view.
+         */
+        $this->app->view->composer('contacts::public.*', function ($view) {
+            $view->page = TypiCMS::getPageLinkedToModule('contacts');
+        });
     }
 
     public function register()
@@ -54,18 +66,6 @@ class ModuleProvider extends ServiceProvider
          * Register Honeypot
          */
         $app->register('Msurguy\Honeypot\HoneypotServiceProvider');
-
-        /*
-         * Sidebar view composer
-         */
-        $app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
-
-        /*
-         * Add the page in the view.
-         */
-        $app->view->composer('contacts::public.*', function ($view) {
-            $view->page = TypiCMS::getPageLinkedToModule('contacts');
-        });
 
         $app->bind('Contacts', EloquentContact::class);
     }
