@@ -4,8 +4,12 @@
 
 @section('content')
 
-    {!! $page->body !!}
+    <div class="site-content">
 
-    <p class="alert alert-success">@lang('db.message when contact form is sent')</p>
+        {!! $page->body !!}
+
+        <p class="alert alert-success">@lang('db.message when contact form is sent')</p>
+
+    </div>
 
 @endsection
