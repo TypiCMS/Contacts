@@ -8,10 +8,10 @@
         {!! BootForm::select('<span class="fa fa-asterisk"></span> '.__('Title'), 'title', ['' => '', 'mr' => __('Mr'), 'mrs' => __('Mrs')]) !!}
     </div>
     <div class="col-sm-5">
-        {!! BootForm::text('<span class="fa fa-asterisk"></span> '.__('First name'), 'first_name') !!}
+        {!! BootForm::text('<span class="fa fa-asterisk"></span> '.__('First name'), 'first_name') !!}
     </div>
     <div class="col-sm-5">
-        {!! BootForm::text('<span class="fa fa-asterisk"></span> '.__('Last name'), 'last_name') !!}
+        {!! BootForm::text('<span class="fa fa-asterisk"></span> '.__('Last name'), 'last_name') !!}
     </div>
 
 </div>
