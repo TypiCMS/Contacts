@@ -2,7 +2,7 @@
 
 @section('bodyClass', 'body-contacts body-contacts-form body-page body-page-'.$page->id)
 
-@section('main')
+@section('content')
 
     @if (!$errors->isEmpty())
         <div class="alert alert-danger alert-dismissable">
@@ -18,11 +18,11 @@
 
     {!! $page->body !!}
 
-    {!! BootForm::open()->action(route($lang.'.contacts.store'))->multipart() !!}
+    {!! BootForm::open()->action(route($lang.'::store-contact'))->multipart() !!}
 
     @include('contacts::_fields')
 
-    <button class="btn-primary btn btn-block btn-lg" type="submit">@lang('validation.attributes.send')</button>
+    <button class="btn-primary btn btn-block btn-lg" type="submit">{{ __('Send') }}</button>
 
     {!! BootForm::close() !!}
 

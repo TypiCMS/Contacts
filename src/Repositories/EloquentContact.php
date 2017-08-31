@@ -2,13 +2,12 @@
 
 namespace TypiCMS\Modules\Contacts\Repositories;
 
-use Illuminate\Database\Eloquent\Model;
-use TypiCMS\Modules\Core\Repositories\RepositoriesAbstract;
+use TypiCMS\Modules\Contacts\Models\Contact;
+use TypiCMS\Modules\Core\Repositories\EloquentRepository;
 
-class EloquentContact extends RepositoriesAbstract implements ContactInterface
+class EloquentContact extends EloquentRepository
 {
-    public function __construct(Model $model)
-    {
-        $this->model = $model;
-    }
+    protected $repositoryId = 'contacts';
+
+    protected $model = Contact::class;
 }

@@ -1,12 +1,12 @@
 @extends('core::admin.master')
 
-@section('title', trans('contacts::global.New'))
+@section('title', __('New contact'))
 
-@section('main')
+@section('content')
 
     @include('core::admin._button-back', ['module' => 'contacts'])
     <h1>
-        @lang('contacts::global.New')
+        @lang('New contact')
     </h1>
 
     {!! BootForm::open()->action(route('admin::index-contacts'))->multipart()->role('form') !!}

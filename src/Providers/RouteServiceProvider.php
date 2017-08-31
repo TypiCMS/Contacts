@@ -4,6 +4,7 @@ namespace TypiCMS\Modules\Contacts\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 
 class RouteServiceProvider extends ServiceProvider
@@ -20,24 +21,22 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param \Illuminate\Routing\Router $router
-     *
-     * @return void
+     * @return null
      */
-    public function map(Router $router)
+    public function map()
     {
-        $router->group(['namespace' => $this->namespace], function (Router $router) {
+        Route::group(['namespace' => $this->namespace], function (Router $router) {
 
             /*
              * Front office routes
              */
             if ($page = TypiCMS::getPageLinkedToModule('contacts')) {
                 $options = $page->private ? ['middleware' => 'auth'] : [];
-                foreach (config('translatable.locales') as $lang) {
-                    if ($page->translate($lang)->status && $uri = $page->uri($lang)) {
-                        $router->get($uri, $options + ['as' => $lang.'.contacts', 'uses' => 'PublicController@form']);
-                        $router->get($uri.'/sent', $options + ['as' => $lang.'.contacts.sent', 'uses' => 'PublicController@sent']);
-                        $router->post($uri, $options + ['as' => $lang.'.contacts.store', 'uses' => 'PublicController@store']);
+                foreach (locales() as $lang) {
+                    if ($page->translate('status', $lang) && $uri = $page->uri($lang)) {
+                        $router->get($uri, $options + ['uses' => 'PublicController@form'])->name($lang.'::index-contacts');
+                        $router->get($uri.'/sent', $options + ['uses' => 'PublicController@sent'])->name($lang.'::contact-sent');
+                        $router->post($uri, $options + ['uses' => 'PublicController@store'])->name($lang.'::store-contact');
                     }
                 }
             }
@@ -45,18 +44,15 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->get('admin/contacts', 'AdminController@index')->name('admin::index-contacts');
-            $router->get('admin/contacts/create', 'AdminController@create')->name('admin::create-contact');
-            $router->get('admin/contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact');
-            $router->post('admin/contacts', 'AdminController@store')->name('admin::store-contact');
-            $router->put('admin/contacts/{contact}', 'AdminController@update')->name('admin::update-contact');
-
-            /*
-             * API routes
-             */
-            $router->get('api/contacts', 'ApiController@index')->name('api::index-contacts');
-            $router->put('api/contacts/{contact}', 'ApiController@update')->name('api::update-contact');
-            $router->delete('api/contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contact');
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
+                $router->get('contacts', 'AdminController@index')->name('admin::index-contacts')->middleware('can:see-all-contacts');
+                $router->get('contacts/create', 'AdminController@create')->name('admin::create-contact')->middleware('can:create-contact');
+                $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact')->middleware('can:update-contact');
+                $router->post('contacts', 'AdminController@store')->name('admin::store-contact')->middleware('can:create-contact');
+                $router->put('contacts/{contact}', 'AdminController@update')->name('admin::update-contact')->middleware('can:update-contact');
+                $router->patch('contacts/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-contact-ajax')->middleware('can:update-contact');
+                $router->delete('contacts/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-contact')->middleware('can:delete-contact');
+            });
         });
     }
 }

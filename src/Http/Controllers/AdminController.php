@@ -4,12 +4,12 @@ namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Models\Contact;
-use TypiCMS\Modules\Contacts\Repositories\ContactInterface;
+use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 
 class AdminController extends BaseAdminController
 {
-    public function __construct(ContactInterface $contact)
+    public function __construct(EloquentContact $contact)
     {
         parent::__construct($contact);
     }
@@ -21,7 +21,7 @@ class AdminController extends BaseAdminController
      */
     public function index()
     {
-        $models = $this->repository->all([], true);
+        $models = $this->repository->findAll();
         app('JavaScript')->put('models', $models);
 
         return view('contacts::admin.index');
@@ -34,7 +34,7 @@ class AdminController extends BaseAdminController
      */
     public function create()
     {
-        $model = $this->repository->getModel();
+        $model = $this->repository->createModel();
 
         return view('contacts::admin.create')
             ->with(compact('model'));
@@ -77,8 +77,24 @@ class AdminController extends BaseAdminController
      */
     public function update(Contact $contact, FormRequest $request)
     {
-        $this->repository->update($request->all());
+        $this->repository->update($request->id, $request->all());
 
         return $this->redirect($request, $contact);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \TypiCMS\Modules\Contacts\Models\Contact $contact
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy(Contact $contact)
+    {
+        $deleted = $this->repository->delete($contact);
+
+        return response()->json([
+            'error' => !$deleted,
+        ]);
     }
 }
