@@ -15,4 +15,9 @@ class Contact extends Base
     protected $presenter = ModulePresenter::class;
 
     protected $guarded = ['id', 'exit', 'my_name', 'my_time'];
+
+    public function uri($locale = null)
+    {
+        return url('/');
+    }
 }
