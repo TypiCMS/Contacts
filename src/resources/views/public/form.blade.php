@@ -5,10 +5,12 @@
 @section('content')
 
     @if (!$errors->isEmpty())
-        <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <div class="alert alert-danger alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
             @lang('db.message when errors in form').
-            <ul>
+            <ul class="mb-0">
                 @foreach ($errors->all() as $message)
                     <li>{{ $message }}</li>
                 @endforeach
