@@ -52,8 +52,17 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact')->middleware('can:update-contact');
                 $router->post('contacts', 'AdminController@store')->name('admin::store-contact')->middleware('can:create-contact');
                 $router->put('contacts/{contact}', 'AdminController@update')->name('admin::update-contact')->middleware('can:update-contact');
-                $router->patch('contacts/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-contact-ajax')->middleware('can:update-contact');
-                $router->delete('contacts/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-contact')->middleware('can:delete-contact');
+            });
+
+            /*
+             * API routes
+             */
+            $router->middleware('api')->prefix('api')->group(function (Router $router) {
+                $router->middleware('auth:api')->group(function (Router $router) {
+                    $router->get('contacts', 'ApiController@index')->name('api::index-contacts')->middleware('can:see-all-contacts');
+                    $router->patch('contacts/{contact}', 'ApiController@updatePartial')->name('api::update-contact-ajax')->middleware('can:update-contact');
+                    $router->delete('contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contact')->middleware('can:delete-contact');
+                });
             });
         });
     }

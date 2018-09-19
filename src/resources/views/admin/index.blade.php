@@ -4,69 +4,44 @@
 
 @section('content')
 
-<div ng-cloak ng-controller="ListController">
+<item-list
+    url-base="{{ route('api::index-contacts') }}"
+    locale="{{ config('typicms.content_locale') }}"
+    fields="id,created_at,first_name,last_name,email,message"
+    table="contacts"
+    title="contacts"
+    :publishable="false"
+    :searchable="['first_name','last_name','email','message']"
+    :sorting="['-created_at']">
 
-    @include('core::admin._button-create', ['module' => 'contacts'])
+    <template slot="add-button">
+        @include('core::admin._button-create', ['module' => 'contacts'])
+    </template>
 
-    <h1>@lang('Contacts')</h1>
+    <template slot="buttons">
+        @include('core::admin._lang-switcher-for-list')
+    </template>
 
-    <div class="btn-toolbar">
-        @include('core::admin._button-select')
-        @include('core::admin._button-actions', ['only' => ['delete']])
-    </div>
+    <template slot="columns" slot-scope="{ sortArray }">
+        <item-list-column-header name="checkbox"></item-list-column-header>
+        <item-list-column-header name="edit"></item-list-column-header>
+        <item-list-column-header name="created_at" sortable :sort-array="sortArray" :label="$t('Date')"></item-list-column-header>
+        <item-list-column-header name="first_name" sortable :sort-array="sortArray" :label="$t('First name')"></item-list-column-header>
+        <item-list-column-header name="last_name" sortable :sort-array="sortArray" :label="$t('Last name')"></item-list-column-header>
+        <item-list-column-header name="email" sortable :sort-array="sortArray" :label="$t('Email')"></item-list-column-header>
+        <item-list-column-header name="message" sortable :sort-array="sortArray" :label="$t('Message')"></item-list-column-header>
+    </template>
 
-    <div class="table-responsive">
+    <template slot="table-row" slot-scope="{ model, checkedModels, loading }">
+        <td class="checkbox"><item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox></td>
+        <td>@include('core::admin._button-edit', ['module' => 'contacts'])</td>
+        <td>@{{ model.created_at | date }}</td>
+        <td>@{{ model.first_name }}</td>
+        <td>@{{ model.last_name }}</td>
+        <td><a :href="'mailto:'+model.email">@{{ model.email }}</a></td>
+        <td>@{{ model.message }}</td>
+    </template>
 
-        <table st-persist="contactsTable" st-table="displayedModels" st-safe-src="models" st-order st-filter class="table table-main">
-            <thead>
-                <tr>
-                    <th class="delete"></th>
-                    <th class="edit"></th>
-                    <th st-sort="first_name" class="first_name st-sort">{{ __('First name') }}</th>
-                    <th st-sort="last_name" class="last_name st-sort">{{ __('Last name') }}</th>
-                    <th st-sort="email" class="email st-sort">{{ __('Email') }}</th>
-                    <th st-sort="message" class="message st-sort">{{ __('Message') }}</th>
-                </tr>
-                <tr>
-                    <td colspan="2"></td>
-                    <td>
-                        <input st-search="first_name" class="form-control form-control-sm" placeholder="@lang('Filter')…" type="text">
-                    </td>
-                    <td>
-                        <input st-search="last_name" class="form-control form-control-sm" placeholder="@lang('Filter')…" type="text">
-                    </td>
-                    <td>
-                        <input st-search="email" class="form-control form-control-sm" placeholder="@lang('Filter')…" type="text">
-                    </td>
-                    <td>
-                        <input st-search="message" class="form-control form-control-sm" placeholder="@lang('Filter')…" type="text">
-                    </td>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr ng-repeat="model in displayedModels">
-                    <td>
-                        <input type="checkbox" checklist-model="checked.models" checklist-value="model">
-                    </td>
-                    <td>
-                        @include('core::admin._button-edit', ['module' => 'contacts'])
-                    </td>
-                    <td>@{{ model.first_name }}</td>
-                    <td>@{{ model.last_name }}</td>
-                    <td>@{{ model.email }}</td>
-                    <td>@{{ model.message }}</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="6" typi-pagination></td>
-                </tr>
-            </tfoot>
-        </table>
-
-    </div>
-
-</div>
+</item-list>
 
 @endsection

@@ -21,9 +21,6 @@ class AdminController extends BaseAdminController
      */
     public function index()
     {
-        $models = $this->repository->findAll();
-        app('JavaScript')->put('models', $models);
-
         return view('contacts::admin.index');
     }
 
@@ -80,21 +77,5 @@ class AdminController extends BaseAdminController
         $this->repository->update($request->id, $request->all());
 
         return $this->redirect($request, $contact);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \TypiCMS\Modules\Contacts\Models\Contact $contact
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy(Contact $contact)
-    {
-        $deleted = $this->repository->delete($contact);
-
-        return response()->json([
-            'error' => !$deleted,
-        ]);
     }
 }
