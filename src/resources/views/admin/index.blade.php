@@ -5,7 +5,7 @@
 @section('content')
 
 <item-list
-    url-base="{{ route('api::index-contacts') }}"
+    url-base="/api/contacts"
     locale="{{ config('typicms.content_locale') }}"
     fields="id,created_at,first_name,last_name,email,message"
     table="contacts"

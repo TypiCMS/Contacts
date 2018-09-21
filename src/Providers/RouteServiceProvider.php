@@ -59,9 +59,9 @@ class RouteServiceProvider extends ServiceProvider
              */
             $router->middleware('api')->prefix('api')->group(function (Router $router) {
                 $router->middleware('auth:api')->group(function (Router $router) {
-                    $router->get('contacts', 'ApiController@index')->name('api::index-contacts')->middleware('can:see-all-contacts');
-                    $router->patch('contacts/{contact}', 'ApiController@updatePartial')->name('api::update-contact-ajax')->middleware('can:update-contact');
-                    $router->delete('contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contact')->middleware('can:delete-contact');
+                    $router->get('contacts', 'ApiController@index')->middleware('can:see-all-contacts');
+                    $router->patch('contacts/{contact}', 'ApiController@updatePartial')->middleware('can:update-contact');
+                    $router->delete('contacts/{contact}', 'ApiController@destroy')->middleware('can:delete-contact');
                 });
             });
         });
