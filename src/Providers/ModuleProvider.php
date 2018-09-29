@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 use Msurguy\Honeypot\HoneypotFacade;
 use TypiCMS\Modules\Contacts\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Contacts\Events\EventHandler;
-use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 
