@@ -30,7 +30,7 @@ class ModuleProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/contacts'),
-        ], 'typicms-views');
+        ], 'views');
 
         // Honeypot facade
         AliasLoader::getInstance()->alias('Honeypot', HoneypotFacade::class);
