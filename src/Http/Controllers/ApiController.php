@@ -21,7 +21,7 @@ class ApiController extends BaseApiController
     {
         $data = QueryBuilder::for(Contact::class)
             ->allowedFilters([
-                Filter::custom('created_at,first_name,last_name,email,message', FilterOr::class),
+                Filter::custom('created_at,name,email,message', FilterOr::class),
             ])
             ->paginate($request->input('per_page'));
 
