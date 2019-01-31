@@ -17,12 +17,12 @@ class ModulePresenter extends Presenter
     }
 
     /**
-     * The title is the name.
+     * Get title by concatenate title, first_name and last_name.
      *
      * @return string
      */
     public function title()
     {
-        return $this->entity->name;
+        return $this->entity->title.' '.$this->entity->first_name.' '.$this->entity->last_name;
     }
 }

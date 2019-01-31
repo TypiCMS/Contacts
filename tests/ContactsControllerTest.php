@@ -24,7 +24,7 @@ class ContactsControllerTest extends TestCase
         $object = new Contact();
         $object->id = 1;
         Contact::shouldReceive('create')->once()->andReturn($object);
-        $input = ['name' => 'John Doe', 'email' => 'john@doe.com', 'message' => 'Hello', 'my_time' => Crypt::encrypt(time() - 60)];
+        $input = ['title' => 'mr', 'first_name' => 'John', 'last_name' => 'Doe', 'email' => 'john@doe.com', 'message' => 'Hello', 'my_time' => Crypt::encrypt(time() - 60)];
         $this->call('POST', 'admin/contacts', $input);
         $this->assertRedirectedToRoute('admin.contacts.edit', ['id' => 1]);
     }
@@ -34,7 +34,7 @@ class ContactsControllerTest extends TestCase
         $object = new Contact();
         $object->id = 1;
         Contact::shouldReceive('create')->once()->andReturn($object);
-        $input = ['name' => 'John Doe', 'email' => 'john@doe.com', 'message' => 'Hello', 'my_time' => Crypt::encrypt(time() - 60), 'exit' => true];
+        $input = ['title' => 'mr', 'first_name' => 'John', 'last_name' => 'Doe', 'email' => 'john@doe.com', 'message' => 'Hello', 'my_time' => Crypt::encrypt(time() - 60), 'exit' => true];
         $this->call('POST', 'admin/contacts', $input);
         $this->assertRedirectedToRoute('admin.contacts.index');
     }
