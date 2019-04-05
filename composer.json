@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "msurguy/honeypot": "~1.0.3",
+        "msurguy/honeypot": "~1.1.1",
         "laravel/framework": "~5.8.0"
     },
     "autoload": {
