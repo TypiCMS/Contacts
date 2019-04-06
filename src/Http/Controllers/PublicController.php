@@ -2,7 +2,10 @@
 
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
+use Illuminate\Support\Facades\Notification;
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
+use TypiCMS\Modules\Contacts\Notifications\NewContactRequest;
+use TypiCMS\Modules\Contacts\Notifications\YourContactRequest;
 use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 
@@ -52,7 +55,11 @@ class PublicController extends BasePublicController
         }
         $contact = $this->repository->create($data);
 
-        event('NewContactRequest', [$contact]);
+        Notification::route('mail', config('typicms.webmaster_email'))
+                    ->notify(new NewContactRequest($contact));
+
+        Notification::route('mail', $request->email)
+                    ->notify(new YourContactRequest($contact));
 
         return redirect()->route(config('app.locale').'::contact-sent')
             ->with('success', true);

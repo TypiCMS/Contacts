@@ -1,5 +1,5 @@
 {!! Honeypot::generate('my_name', 'my_time') !!}
-{!! BootForm::hidden('language')->value(isset($model->language) ? $model->language : config('app.locale')) !!}
+{!! BootForm::hidden('locale')->value(isset($model->locale) ? $model->locale : config('app.locale')) !!}
 {!! BootForm::hidden('id') !!}
 {!! BootForm::text('<span class="fa fa-asterisk"></span> '.__('Name'), 'name') !!}
 {!! BootForm::email('<span class="fa fa-asterisk"></span> '.__('Email'), 'email') !!}

@@ -15,7 +15,7 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('language')->nullable();
+            $table->string('locale')->nullable();
             $table->string('name')->nullable();
             $table->string('email');
             // $table->string('website')->nullable();

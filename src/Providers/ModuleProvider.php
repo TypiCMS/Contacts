@@ -6,7 +6,6 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Msurguy\Honeypot\HoneypotFacade;
 use TypiCMS\Modules\Contacts\Composers\SidebarViewComposer;
-use TypiCMS\Modules\Contacts\Events\EventHandler;
 use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 
@@ -50,11 +49,6 @@ class ModuleProvider extends ServiceProvider
     public function register()
     {
         $app = $this->app;
-
-        /*
-         * Subscribe to events class
-         */
-        $app->events->subscribe(new EventHandler());
 
         /*
          * Register route service provider
