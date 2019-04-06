@@ -3,10 +3,8 @@
 namespace TypiCMS\Modules\Contacts\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\HtmlString;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 
 class NewContactRequest extends Notification
@@ -28,7 +26,8 @@ class NewContactRequest extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -39,12 +38,13 @@ class NewContactRequest extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->subject('['.TypiCMS::title().'] '.__('New contact request'))
                     ->markdown('contacts::mail.new-contact-request', ['contact' => $this->contact]);
     }
@@ -52,7 +52,8 @@ class NewContactRequest extends Notification
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)
