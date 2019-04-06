@@ -11,7 +11,7 @@ class FormRequest extends AbstractFormRequest
         return [
             'email' => 'required|email|max:255',
             'name' => 'required|max:255',
-            'message' => 'required|max:255',
+            'message' => 'required',
             'my_name' => 'honeypot',
             'my_time' => 'required|honeytime:5',
         ];
