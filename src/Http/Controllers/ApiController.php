@@ -6,17 +6,11 @@ use Illuminate\Http\Request;
 use Spatie\QueryBuilder\Filter;
 use Spatie\QueryBuilder\QueryBuilder;
 use TypiCMS\Modules\Contacts\Models\Contact;
-use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Filters\FilterOr;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 
 class ApiController extends BaseApiController
 {
-    public function __construct(EloquentContact $contact)
-    {
-        parent::__construct($contact);
-    }
-
     public function index(Request $request)
     {
         $data = QueryBuilder::for(Contact::class)
@@ -30,7 +24,7 @@ class ApiController extends BaseApiController
 
     public function destroy(Contact $contact)
     {
-        $deleted = $this->repository->delete($contact);
+        $deleted = $contact->delete();
 
         return response()->json([
             'error' => !$deleted,

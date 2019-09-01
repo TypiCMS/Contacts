@@ -4,16 +4,10 @@ namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Models\Contact;
-use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 
 class AdminController extends BaseAdminController
 {
-    public function __construct(EloquentContact $contact)
-    {
-        parent::__construct($contact);
-    }
-
     /**
      * List models.
      *
@@ -31,7 +25,7 @@ class AdminController extends BaseAdminController
      */
     public function create()
     {
-        $model = $this->repository->createModel();
+        $model = new;
 
         return view('contacts::admin.create')
             ->with(compact('model'));
@@ -59,7 +53,7 @@ class AdminController extends BaseAdminController
      */
     public function store(FormRequest $request)
     {
-        $contact = $this->repository->create($request->all());
+        $contact = ::create($request->all());
 
         return $this->redirect($request, $contact);
     }
@@ -74,7 +68,7 @@ class AdminController extends BaseAdminController
      */
     public function update(Contact $contact, FormRequest $request)
     {
-        $this->repository->update($request->id, $request->all());
+        ::update($request->id, $request->all());
 
         return $this->redirect($request, $contact);
     }

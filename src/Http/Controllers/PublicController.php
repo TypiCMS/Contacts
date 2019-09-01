@@ -6,17 +6,11 @@ use Illuminate\Support\Facades\Notification;
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Notifications\NewContactRequest;
 use TypiCMS\Modules\Contacts\Notifications\YourContactRequest;
-use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 
 class PublicController extends BasePublicController
 {
     protected $form;
-
-    public function __construct(EloquentContact $contact)
-    {
-        parent::__construct($contact);
-    }
 
     /**
      * Display a listing of the resource.
@@ -53,7 +47,7 @@ class PublicController extends BasePublicController
         foreach ($request->all() as $key => $value) {
             $data[$key] = strip_tags($value);
         }
-        $contact = $this->repository->create($data);
+        $contact = ::create($data);
 
         Notification::route('mail', config('typicms.webmaster_email'))
                     ->notify(new NewContactRequest($contact));

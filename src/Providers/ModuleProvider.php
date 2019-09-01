@@ -6,7 +6,6 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Msurguy\Honeypot\HoneypotFacade;
 use TypiCMS\Modules\Contacts\Composers\SidebarViewComposer;
-use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 
 class ModuleProvider extends ServiceProvider
@@ -60,6 +59,6 @@ class ModuleProvider extends ServiceProvider
          */
         $app->register('Msurguy\Honeypot\HoneypotServiceProvider');
 
-        $app->bind('Contacts', EloquentContact::class);
+        $app->bind('Contacts', Contact::class);
     }
 }
