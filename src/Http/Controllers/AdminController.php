@@ -2,73 +2,43 @@
 
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 
 class AdminController extends BaseAdminController
 {
-    /**
-     * List models.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function index()
+    public function index(): View
     {
         return view('contacts::admin.index');
     }
 
-    /**
-     * Create form for a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
+    public function create(): View
     {
-        $model = new;
+        $model = new Contact;
 
         return view('contacts::admin.create')
             ->with(compact('model'));
     }
 
-    /**
-     * Edit form for the specified resource.
-     *
-     * @param \TypiCMS\Modules\Contacts\Models\Contact $contact
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit(Contact $contact)
+    public function edit(Contact $contact): View
     {
         return view('contacts::admin.edit')
             ->with(['model' => $contact]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \TypiCMS\Modules\Contacts\Http\Requests\FormRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(FormRequest $request)
+    public function store(FormRequest $request): RedirectResponse
     {
-        $contact = ::create($request->all());
+        $contact = Contact::create($request->all());
 
         return $this->redirect($request, $contact);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \TypiCMS\Modules\Contacts\Models\Contact            $contact
-     * @param \TypiCMS\Modules\Contacts\Http\Requests\FormRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(Contact $contact, FormRequest $request)
+    public function update(Contact $contact, FormRequest $request): RedirectResponse
     {
-        ::update($request->id, $request->all());
+        $contact->update($request->all());
 
         return $this->redirect($request, $contact);
     }
