@@ -2,32 +2,23 @@
 
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\View\View;
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
+use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Contacts\Notifications\NewContactRequest;
 use TypiCMS\Modules\Contacts\Notifications\YourContactRequest;
 use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 
 class PublicController extends BasePublicController
 {
-    protected $form;
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Support\Facades\Response
-     */
-    public function form()
+    public function form(): View
     {
         return view('contacts::public.form');
     }
 
-    /**
-     * Display a page when form is sent.
-     *
-     * @return \Illuminate\Support\Facades\Response
-     */
-    public function sent()
+    public function sent(): RedirectResponse
     {
         if (session('success')) {
             return view('contacts::public.sent');
@@ -36,18 +27,13 @@ class PublicController extends BasePublicController
         return redirect(url('/'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Support\Facades\Response
-     */
-    public function store(FormRequest $request)
+    public function store(FormRequest $request): RedirectResponse
     {
         $data = [];
         foreach ($request->all() as $key => $value) {
             $data[$key] = strip_tags($value);
         }
-        $contact = ::create($data);
+        $contact = Contact::create($data);
 
         Notification::route('mail', config('typicms.webmaster_email'))
                     ->notify(new NewContactRequest($contact));
