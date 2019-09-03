@@ -16,7 +16,7 @@ class Contact extends Base
 
     protected $guarded = ['id', 'exit', 'my_name', 'my_time'];
 
-    public function uri($locale = null)
+    public function uri($locale = null): string
     {
         return url('/');
     }
