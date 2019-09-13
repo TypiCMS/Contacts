@@ -11,7 +11,7 @@
     table="contacts"
     title="contacts"
     :publishable="false"
-    :searchable="['created_at,name,email,message']"
+    :searchable="['name,email,message']"
     :sorting="['-created_at']">
 
     <template slot="add-button">
