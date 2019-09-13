@@ -18,7 +18,7 @@ class PublicController extends BasePublicController
         return view('contacts::public.form');
     }
 
-    public function sent(): RedirectResponse
+    public function sent()
     {
         if (session('success')) {
             return view('contacts::public.sent');
