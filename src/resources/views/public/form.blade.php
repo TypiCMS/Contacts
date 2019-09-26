@@ -18,7 +18,7 @@
         </div>
     @endif
 
-    {!! $page->body !!}
+    {!! $page->present()->body !!}
 
     {!! BootForm::open()->action(route($lang.'::store-contact'))->multipart() !!}
 
