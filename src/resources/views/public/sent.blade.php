@@ -6,7 +6,7 @@
 
     <div class="site-content">
 
-        {!! $page->present()->body !!}
+        <div class="rich-content">{!! $page->present()->body !!}</div>
 
         <p class="alert alert-success">@lang('db.message when contact form is sent')</p>
 
