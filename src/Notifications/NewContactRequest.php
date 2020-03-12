@@ -15,8 +15,6 @@ class NewContactRequest extends Notification
 
     /**
      * Create a new notification instance.
-     *
-     * @return void
      */
     public function __construct($contact)
     {
@@ -59,7 +57,6 @@ class NewContactRequest extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
         ];
     }
 }
