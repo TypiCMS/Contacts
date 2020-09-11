@@ -2,7 +2,6 @@
 
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -25,12 +24,8 @@ class ApiController extends BaseApiController
         return $data;
     }
 
-    public function destroy(Contact $contact): JsonResponse
+    public function destroy(Contact $contact)
     {
-        $deleted = $contact->delete();
-
-        return response()->json([
-            'error' => !$deleted,
-        ]);
+        $contact->delete();
     }
 }
