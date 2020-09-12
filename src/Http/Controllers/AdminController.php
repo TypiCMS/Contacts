@@ -31,14 +31,14 @@ class AdminController extends BaseAdminController
 
     public function store(FormRequest $request): RedirectResponse
     {
-        $contact = Contact::create($request->all());
+        $contact = Contact::create($request->validated());
 
         return $this->redirect($request, $contact);
     }
 
     public function update(Contact $contact, FormRequest $request): RedirectResponse
     {
-        $contact->update($request->all());
+        $contact->update($request->validated());
 
         return $this->redirect($request, $contact);
     }
