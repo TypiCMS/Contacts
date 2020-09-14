@@ -30,7 +30,7 @@ class PublicController extends BasePublicController
     public function store(FormRequest $request): RedirectResponse
     {
         $data = [];
-        foreach ($request->all() as $key => $value) {
+        foreach ($request->validated() as $key => $value) {
             $data[$key] = strip_tags($value);
         }
         $contact = Contact::create($data);
