@@ -11,7 +11,7 @@ class SidebarViewComposer
 {
     public function compose(View $view)
     {
-        if (Gate::denies('see-all-contacts')) {
+        if (Gate::denies('read contacts')) {
             return;
         }
         $view->sidebar->group(__('Contacts'), function (SidebarGroup $group) {

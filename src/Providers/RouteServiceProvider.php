@@ -44,11 +44,11 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->middleware('admin')->prefix('admin')->group(function (Router $router) {
-                $router->get('contacts', 'AdminController@index')->name('admin::index-contacts')->middleware('can:see-all-contacts');
-                $router->get('contacts/create', 'AdminController@create')->name('admin::create-contact')->middleware('can:create-contact');
-                $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact')->middleware('can:update-contact');
-                $router->post('contacts', 'AdminController@store')->name('admin::store-contact')->middleware('can:create-contact');
-                $router->put('contacts/{contact}', 'AdminController@update')->name('admin::update-contact')->middleware('can:update-contact');
+                $router->get('contacts', 'AdminController@index')->name('admin::index-contacts')->middleware('can:read contacts');
+                $router->get('contacts/create', 'AdminController@create')->name('admin::create-contact')->middleware('can:create contacts');
+                $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact')->middleware('can:update contacts');
+                $router->post('contacts', 'AdminController@store')->name('admin::store-contact')->middleware('can:create contacts');
+                $router->put('contacts/{contact}', 'AdminController@update')->name('admin::update-contact')->middleware('can:update contacts');
             });
 
             /*
@@ -56,9 +56,9 @@ class RouteServiceProvider extends ServiceProvider
              */
             $router->middleware('api')->prefix('api')->group(function (Router $router) {
                 $router->middleware('auth:api')->group(function (Router $router) {
-                    $router->get('contacts', 'ApiController@index')->middleware('can:see-all-contacts');
-                    $router->patch('contacts/{contact}', 'ApiController@updatePartial')->middleware('can:update-contact');
-                    $router->delete('contacts/{contact}', 'ApiController@destroy')->middleware('can:delete-contact');
+                    $router->get('contacts', 'ApiController@index')->middleware('can:read contacts');
+                    $router->patch('contacts/{contact}', 'ApiController@updatePartial')->middleware('can:update contacts');
+                    $router->delete('contacts/{contact}', 'ApiController@destroy')->middleware('can:delete contacts');
                 });
             });
         });
