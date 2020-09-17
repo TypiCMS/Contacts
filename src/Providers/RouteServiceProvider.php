@@ -5,19 +5,13 @@ namespace TypiCMS\Modules\Contacts\Providers;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+use TypiCMS\Modules\Contacts\Http\Controllers\AdminController;
+use TypiCMS\Modules\Contacts\Http\Controllers\ApiController;
+use TypiCMS\Modules\Contacts\Http\Controllers\PublicController;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    /**
-     * This namespace is applied to the controller routes in your routes file.
-     *
-     * In addition, it is set as the URL generator's root namespace.
-     *
-     * @var string
-     */
-    protected $namespace = 'TypiCMS\Modules\Contacts\Http\Controllers';
-
     /**
      * Define the routes for the application.
      */
@@ -32,9 +26,9 @@ class RouteServiceProvider extends ServiceProvider
                     $options = $page->private ? ['middleware' => 'auth'] : [];
                     foreach (locales() as $lang) {
                         if ($page->translate('status', $lang) && $uri = $page->uri($lang)) {
-                            $router->get($uri, $options + ['uses' => 'PublicController@form'])->name($lang.'::index-contacts');
-                            $router->get($uri.'/sent', $options + ['uses' => 'PublicController@sent'])->name($lang.'::contact-sent');
-                            $router->post($uri, $options + ['uses' => 'PublicController@store'])->name($lang.'::store-contact');
+                            $router->get($uri, $options + ['uses' => [PublicController::class, 'form']])->name($lang.'::index-contacts');
+                            $router->get($uri.'/sent', $options + ['uses' => [PublicController::class, 'sent']])->name($lang.'::contact-sent');
+                            $router->post($uri, $options + ['uses' => [PublicController::class, 'store']])->name($lang.'::store-contact');
                         }
                     }
                 });
@@ -44,11 +38,11 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->middleware('admin')->prefix('admin')->group(function (Router $router) {
-                $router->get('contacts', 'AdminController@index')->name('admin::index-contacts')->middleware('can:read contacts');
-                $router->get('contacts/create', 'AdminController@create')->name('admin::create-contact')->middleware('can:create contacts');
-                $router->get('contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact')->middleware('can:update contacts');
-                $router->post('contacts', 'AdminController@store')->name('admin::store-contact')->middleware('can:create contacts');
-                $router->put('contacts/{contact}', 'AdminController@update')->name('admin::update-contact')->middleware('can:update contacts');
+                $router->get('contacts', [AdminController::class, 'index'])->name('admin::index-contacts')->middleware('can:read contacts');
+                $router->get('contacts/create', [AdminController::class, 'create'])->name('admin::create-contact')->middleware('can:create contacts');
+                $router->get('contacts/{contact}/edit', [AdminController::class, 'edit'])->name('admin::edit-contact')->middleware('can:update contacts');
+                $router->post('contacts', [AdminController::class, 'store'])->name('admin::store-contact')->middleware('can:create contacts');
+                $router->put('contacts/{contact}', [AdminController::class, 'update'])->name('admin::update-contact')->middleware('can:update contacts');
             });
 
             /*
@@ -56,9 +50,9 @@ class RouteServiceProvider extends ServiceProvider
              */
             $router->middleware('api')->prefix('api')->group(function (Router $router) {
                 $router->middleware('auth:api')->group(function (Router $router) {
-                    $router->get('contacts', 'ApiController@index')->middleware('can:read contacts');
-                    $router->patch('contacts/{contact}', 'ApiController@updatePartial')->middleware('can:update contacts');
-                    $router->delete('contacts/{contact}', 'ApiController@destroy')->middleware('can:delete contacts');
+                    $router->get('contacts', [ApiController::class, 'index'])->middleware('can:read contacts');
+                    $router->patch('contacts/{contact}', [ApiController::class, 'updatePartial'])->middleware('can:update contacts');
+                    $router->delete('contacts/{contact}', [ApiController::class, 'destroy'])->middleware('can:delete contacts');
                 });
             });
         });
