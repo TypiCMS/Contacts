@@ -15,6 +15,8 @@ class YourContactRequest extends Notification
 
     /**
      * Create a new notification instance.
+     *
+     * @param mixed $contact
      */
     public function __construct($contact)
     {
@@ -43,8 +45,8 @@ class YourContactRequest extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage())
-                    ->subject('['.TypiCMS::title().'] '.__('Thank you for your contact request.'))
-                    ->markdown('contacts::mail.your-new-contact-request', ['contact' => $this->contact]);
+            ->subject('['.TypiCMS::title().'] '.__('Thank you for your contact request.'))
+            ->markdown('contacts::mail.your-new-contact-request', ['contact' => $this->contact]);
     }
 
     /**
