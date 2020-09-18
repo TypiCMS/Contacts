@@ -8,7 +8,7 @@ use Msurguy\Honeypot\HoneypotFacade;
 use TypiCMS\Modules\Contacts\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 
-class ModuleProvider extends ServiceProvider
+class ModuleServiceProvider extends ServiceProvider
 {
     public function boot()
     {
