@@ -4,7 +4,7 @@ return [
     'contacts' => [
         'read contacts' => 'Read',
         'create contacts' => 'Create',
-        'update contacts' => 'Edit',
+        'update contacts' => 'Update',
         'delete contacts' => 'Delete',
     ],
 ];

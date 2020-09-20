@@ -40,7 +40,7 @@ class RouteServiceProvider extends ServiceProvider
             $router->middleware('admin')->prefix('admin')->group(function (Router $router) {
                 $router->get('contacts', [AdminController::class, 'index'])->name('admin::index-contacts')->middleware('can:read contacts');
                 $router->get('contacts/create', [AdminController::class, 'create'])->name('admin::create-contact')->middleware('can:create contacts');
-                $router->get('contacts/{contact}/edit', [AdminController::class, 'edit'])->name('admin::edit-contact')->middleware('can:update contacts');
+                $router->get('contacts/{contact}/edit', [AdminController::class, 'edit'])->name('admin::edit-contact')->middleware('can:read contacts');
                 $router->post('contacts', [AdminController::class, 'store'])->name('admin::store-contact')->middleware('can:create contacts');
                 $router->put('contacts/{contact}', [AdminController::class, 'update'])->name('admin::update-contact')->middleware('can:update contacts');
             });
