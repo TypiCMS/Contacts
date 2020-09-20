@@ -10,6 +10,7 @@
     fields="id,created_at,name,email,message"
     table="contacts"
     title="contacts"
+    :multilingual="false"
     :publishable="false"
     :searchable="['name,email,message']"
     :sorting="['-created_at']">
