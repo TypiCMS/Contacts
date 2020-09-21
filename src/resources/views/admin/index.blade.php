@@ -12,6 +12,7 @@
     title="contacts"
     :multilingual="false"
     :publishable="false"
+    :exportable="true"
     :searchable="['name,email,message']"
     :sorting="['-created_at']">
 
