@@ -6,7 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
-use TypiCMS\Modules\Contacts\Exports\ContactsExport;
+use TypiCMS\Modules\Contacts\Exports\Export;
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
@@ -22,7 +22,7 @@ class AdminController extends BaseAdminController
     {
         $filename = date('Y-m-d').' '.config('app.name').' contacts.xlsx';
 
-        return Excel::download(new ContactsExport($request), $filename);
+        return Excel::download(new Export($request), $filename);
     }
 
     public function create(): View

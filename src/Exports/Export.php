@@ -14,7 +14,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Core\Filters\FilterOr;
 
-class ContactsExport implements WithColumnFormatting, ShouldAutoSize, FromCollection, WithHeadings, WithMapping
+class Export implements WithColumnFormatting, ShouldAutoSize, FromCollection, WithHeadings, WithMapping
 {
     protected $collection;
 
