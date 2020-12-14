@@ -10,6 +10,7 @@ class FormRequest extends AbstractFormRequest
     {
         return [
             'email' => 'required|email:rfc,dns|max:255',
+            'locale' => 'required|max:5',
             'name' => 'required|max:255',
             'message' => 'required',
             'my_name' => 'honeypot',
