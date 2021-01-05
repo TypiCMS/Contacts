@@ -26,7 +26,9 @@
 
         @include('contacts::_fields')
 
-        <button class="btn-primary btn btn-block btn-lg" type="submit">{{ __('Send') }}</button>
+        <div class="d-grid">
+            <button class="btn-primary btn btn-lg" type="submit">{{ __('Send') }}</button>
+        </div>
 
         {!! BootForm::close() !!}
 

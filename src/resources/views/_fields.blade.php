@@ -5,6 +5,6 @@
 {!! BootForm::email(__('Email') . ' <span class="asterisk">*</span>', 'email') !!}
 {!! BootForm::textarea(__('Message') . ' <span class="asterisk">*</span>', 'message') !!}
 
-<div class="form-group">
+<div class="mb-3">
     <span class="asterisk">*</span> @lang('Mandatory fields')
 </div>
