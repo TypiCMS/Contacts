@@ -8,20 +8,16 @@ class ModulePresenter extends Presenter
 {
     /**
      * Format creation date.
-     *
-     * @return string
      */
-    public function createdAt()
+    public function createdAt(): string
     {
         return $this->entity->created_at->format('d.m.Y');
     }
 
     /**
      * The title is the name.
-     *
-     * @return string
      */
-    public function title()
+    public function title(): string
     {
         return $this->entity->name;
     }
