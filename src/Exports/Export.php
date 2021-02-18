@@ -43,12 +43,12 @@ class Export implements WithColumnFormatting, ShouldAutoSize, FromCollection, Wi
     public function headings(): array
     {
         return [
-            'Created at',
-            'Updated at',
-            'Locale',
-            'Name',
-            'Email',
-            'Message',
+            __('Created at'),
+            __('Updated at'),
+            __('Locale'),
+            __('Name'),
+            __('Email'),
+            __('Message'),
         ];
     }
 
