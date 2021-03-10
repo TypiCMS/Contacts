@@ -18,14 +18,14 @@ class ModuleServiceProvider extends ServiceProvider
         $modules = $this->app['config']['typicms']['modules'];
         $this->app['config']->set('typicms.modules', array_merge(['contacts' => ['linkable_to_page']], $modules));
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views/', 'contacts');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'contacts');
 
         $this->publishes([
-            __DIR__.'/../database/migrations/create_contacts_table.php.stub' => getMigrationFileName('create_contacts_table'),
+            __DIR__.'/../../database/migrations/create_contacts_table.php.stub' => getMigrationFileName('create_contacts_table'),
         ], 'migrations');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/contacts'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/contacts'),
         ], 'views');
 
         // Honeypot facade
