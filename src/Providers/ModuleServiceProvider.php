@@ -6,6 +6,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Msurguy\Honeypot\HoneypotFacade;
 use TypiCMS\Modules\Contacts\Composers\SidebarViewComposer;
+use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 
 class ModuleServiceProvider extends ServiceProvider

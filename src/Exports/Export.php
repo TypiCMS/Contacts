@@ -16,11 +16,9 @@ use TypiCMS\Modules\Core\Filters\FilterOr;
 
 class Export implements WithColumnFormatting, ShouldAutoSize, FromCollection, WithHeadings, WithMapping
 {
-    protected $collection;
-
-    public function __construct($request)
+    public function collection()
     {
-        $this->collection = QueryBuilder::for(Contact::class)
+        return QueryBuilder::for(Contact::class)
             ->allowedSorts(['created_at', 'name', 'email', 'message'])
             ->allowedFilters([
                 AllowedFilter::custom('name,email,message', new FilterOr()),
@@ -58,10 +56,5 @@ class Export implements WithColumnFormatting, ShouldAutoSize, FromCollection, Wi
             'A' => NumberFormat::FORMAT_DATE_DATETIME,
             'B' => NumberFormat::FORMAT_DATE_DATETIME,
         ];
-    }
-
-    public function collection()
-    {
-        return $this->collection;
     }
 }
