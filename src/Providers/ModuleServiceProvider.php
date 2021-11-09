@@ -3,6 +3,7 @@
 namespace TypiCMS\Modules\Contacts\Providers;
 
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Msurguy\Honeypot\HoneypotFacade;
 use TypiCMS\Modules\Contacts\Composers\SidebarViewComposer;
@@ -11,13 +12,12 @@ use TypiCMS\Modules\Core\Facades\TypiCMS;
 
 class ModuleServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.contacts');
         $this->mergeConfigFrom(__DIR__.'/../config/permissions.php', 'typicms.permissions');
 
-        $modules = $this->app['config']['typicms']['modules'];
-        $this->app['config']->set('typicms.modules', array_merge(['contacts' => ['linkable_to_page']], $modules));
+        config(['typicms.modules.contacts' => ['linkable_to_page']]);
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'contacts');
 
@@ -32,33 +32,25 @@ class ModuleServiceProvider extends ServiceProvider
         // Honeypot facade
         AliasLoader::getInstance()->alias('Honeypot', HoneypotFacade::class);
 
-        /*
-         * Sidebar view composer
-         */
-        $this->app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
+        View::composer('core::admin._sidebar', SidebarViewComposer::class);
 
         /*
          * Add the page in the view.
          */
-        $this->app->view->composer('contacts::public.*', function ($view) {
+        View::composer('contacts::public.*', function ($view) {
             $view->page = TypiCMS::getPageLinkedToModule('contacts');
         });
     }
 
-    public function register()
+    public function register(): void
     {
-        $app = $this->app;
-
-        /*
-         * Register route service provider
-         */
-        $app->register(RouteServiceProvider::class);
+        $this->app->register(RouteServiceProvider::class);
 
         /*
          * Register Honeypot
          */
-        $app->register('Msurguy\Honeypot\HoneypotServiceProvider');
+        $this->app->register('Msurguy\Honeypot\HoneypotServiceProvider');
 
-        $app->bind('Contacts', Contact::class);
+        $this->app->bind('Contacts', Contact::class);
     }
 }
