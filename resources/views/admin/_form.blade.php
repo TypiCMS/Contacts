@@ -1,4 +1,4 @@
-@component('core::admin._buttons-form', ['model' => $model])
+@component('core::admin._buttons-form', ['model' => $model, 'langSwitcher' => false])
 @endcomponent
 
 @include('contacts::_fields')

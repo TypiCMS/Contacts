@@ -14,20 +14,12 @@ class ModuleServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.contacts');
-        $this->mergeConfigFrom(__DIR__.'/../config/permissions.php', 'typicms.permissions');
-
-        config(['typicms.modules.contacts' => ['linkable_to_page']]);
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.modules.contacts');
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'contacts');
 
-        $this->publishes([
-            __DIR__.'/../../database/migrations/create_contacts_table.php.stub' => getMigrationFileName('create_contacts_table'),
-        ], 'migrations');
-
-        $this->publishes([
-            __DIR__.'/../../resources/views' => resource_path('views/vendor/contacts'),
-        ], 'views');
+        $this->publishes([__DIR__.'/../../database/migrations/create_contacts_table.php.stub' => getMigrationFileName('create_contacts_table')], 'typicms-migrations');
+        $this->publishes([__DIR__.'/../../resources/views' => resource_path('views/vendor/contacts')], 'typicms-views');
 
         // Honeypot facade
         AliasLoader::getInstance()->alias('Honeypot', HoneypotFacade::class);

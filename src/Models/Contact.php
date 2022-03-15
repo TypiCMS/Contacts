@@ -5,7 +5,7 @@ namespace TypiCMS\Modules\Contacts\Models;
 use Laracasts\Presenter\PresentableTrait;
 use TypiCMS\Modules\Contacts\Presenters\ModulePresenter;
 use TypiCMS\Modules\Core\Models\Base;
-use TypiCMS\Modules\History\Traits\Historable;
+use TypiCMS\Modules\Core\Traits\Historable;
 
 class Contact extends Base
 {
