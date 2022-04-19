@@ -1,6 +1,14 @@
-@component('core::admin._buttons-form', ['model' => $model, 'langSwitcher' => false])
-@endcomponent
+<div class="header">
+    @include('core::admin._button-back', ['url' => $model->indexUrl(), 'title' => __('Contacts')])
+    @include('core::admin._title', ['default' => __('New contact')])
+    @component('core::admin._buttons-form', ['model' => $model, 'langSwitcher' => false])
+    @endcomponent
+</div>
 
-@include('contacts::_fields')
+<div class="content">
 
-{!! BootForm::hidden('my_time')->value(Crypt::encrypt(time()-60)) !!}
+    @include('contacts::_fields')
+
+    {!! BootForm::hidden('my_time')->value(Crypt::encrypt(time()-60)) !!}
+
+</div>
