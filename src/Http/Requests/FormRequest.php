@@ -13,6 +13,7 @@ class FormRequest extends AbstractFormRequest
             'locale' => 'required|max:5',
             'name' => 'required|max:255',
             'message' => 'required',
+            'privacy_policy_accepted' => 'accepted',
             'my_name' => 'honeypot',
             'my_time' => 'required|honeytime:5',
         ];
