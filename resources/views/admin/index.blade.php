@@ -10,7 +10,7 @@
     fields="id,created_at,name,email,message"
     table="contacts"
     title="contacts"
-    :multilingual="false"
+    :translatable="false"
     :publishable="false"
     :exportable="true"
     :searchable="['name,email,message']"
