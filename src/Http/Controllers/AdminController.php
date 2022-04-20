@@ -43,13 +43,15 @@ class AdminController extends BaseAdminController
     {
         $contact = Contact::create($request->validated());
 
-        return $this->redirect($request, $contact);
+        return $this->redirect($request, $contact)
+            ->withMessage(__('Item successfully created.'));
     }
 
     public function update(Contact $contact, FormRequest $request): RedirectResponse
     {
         $contact->update($request->validated());
 
-        return $this->redirect($request, $contact);
+        return $this->redirect($request, $contact)
+            ->withMessage(__('Item successfully updated.'));
     }
 }
