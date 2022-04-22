@@ -12,7 +12,7 @@ class ModuleServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.modules.contacts');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.modules');
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'contacts');
 
