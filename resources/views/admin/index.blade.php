@@ -6,7 +6,6 @@
 
 <item-list
     url-base="/api/contacts"
-    locale="{{ config('typicms.content_locale') }}"
     fields="id,created_at,name,email,message"
     table="contacts"
     title="contacts"
@@ -31,7 +30,7 @@
 
     <template slot="table-row" slot-scope="{ model, checkedModels, loading }">
         <td class="checkbox" v-if="$can('update contacts')||$can('delete contacts')"><item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox></td>
-        <td v-if="$can('update contacts')">@include('core::admin._button-edit', ['module' => 'contacts'])</td>
+        <td v-if="$can('update contacts')"><item-list-edit-button :url="'/admin/contacts/'+model.id+'/edit'"></item-list-edit-button></td>
         <td>@{{ model.created_at | date }}</td>
         <td>@{{ model.name }}</td>
         <td><a :href="'mailto:'+model.email">@{{ model.email }}</a></td>
