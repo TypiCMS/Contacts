@@ -17,7 +17,7 @@ class ModuleServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'contacts');
 
         $this->publishes([__DIR__.'/../../database/migrations/create_contacts_table.php.stub' => getMigrationFileName('create_contacts_table')], 'typicms-migrations');
-        $this->publishes([__DIR__.'/../../resources/views' => resource_path('views/vendor/contacts')], 'typicms-views');
+        $this->publishes([__DIR__.'/../../resources/views' => resource_path('views/contacts')], 'typicms-views');
 
         View::composer('core::admin._sidebar', SidebarViewComposer::class);
 
