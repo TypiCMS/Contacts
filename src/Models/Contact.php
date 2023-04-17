@@ -12,7 +12,7 @@ class Contact extends Base
     use Historable;
     use PresentableTrait;
 
-    protected $presenter = ModulePresenter::class;
+    protected string $presenter = ModulePresenter::class;
 
     protected $guarded = ['my_name', 'my_time'];
 
