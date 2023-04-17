@@ -20,7 +20,7 @@ class AdminController extends BaseAdminController
 
     public function export(Request $request)
     {
-        $filename = date('Y-m-d').' '.config('app.name').' contacts.xlsx';
+        $filename = date('Y-m-d') . ' ' . config('app.name') . ' contacts.xlsx';
 
         return Excel::download(new Export(), $filename);
     }
