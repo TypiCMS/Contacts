@@ -16,6 +16,10 @@ class Contact extends Base
 
     protected $guarded = ['my_name', 'my_time'];
 
+    protected $casts = [
+        'privacy_policy_accepted' => 'boolean',
+    ];
+
     public function uri($locale = null): string
     {
         return url('/');
