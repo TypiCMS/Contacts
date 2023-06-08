@@ -14,6 +14,8 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/contacts.php', 'typicms.modules.contacts');
 
+        $this->loadRoutesFrom(__DIR__ . '/../routes/contacts.php');
+
         $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'contacts');
 
         $this->publishes([__DIR__ . '/../../database/migrations/create_contacts_table.php.stub' => getMigrationFileName('create_contacts_table')], 'typicms-migrations');
@@ -31,8 +33,6 @@ class ModuleServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->app->register(RouteServiceProvider::class);
-
         $this->app->bind('Contacts', Contact::class);
     }
 }
