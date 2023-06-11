@@ -7,5 +7,6 @@
 {!! BootForm::checkbox(__('I agree to the Privacy Policy') . ' <span class="asterisk">*</span>', 'privacy_policy_accepted')->required() !!}
 
 <div class="mb-3">
-    <span class="asterisk">*</span> @lang('Mandatory fields')
+    <span class="asterisk">*</span>
+    @lang('Mandatory fields')
 </div>
