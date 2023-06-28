@@ -14,12 +14,7 @@
                             <li>{{ $message }}</li>
                         @endforeach
                     </ul>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="alert"
-                        aria-label="@lang('Close')"
-                    ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@lang('Close')"></button>
                 </div>
             @endif
 
