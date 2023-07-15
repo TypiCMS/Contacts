@@ -3,8 +3,7 @@
 @section('title', __('Contacts'))
 
 @section('content')
-    <item-list url-base="/api/contacts" fields="id,created_at,name,email,message" table="contacts" title="contacts" :translatable="false" :publishable="false" :exportable="true"
-        :searchable="['name,email,message']" :sorting="['-created_at']">
+    <item-list url-base="/api/contacts" fields="id,created_at,name,email,message" table="contacts" title="contacts" :translatable="false" :publishable="false" :exportable="true" :searchable="['name,email,message']" :sorting="['-created_at']">
         <template slot="add-button" v-if="$can('create contacts')">
             @include('core::admin._button-create', ['module' => 'contacts'])
         </template>
