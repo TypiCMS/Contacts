@@ -45,7 +45,7 @@ class NewContactRequest extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage())
-            ->subject('[' . TypiCMS::title() . '] ' . __('New contact request'))
+            ->subject('[' . websiteTitle() . '] ' . __('New contact request'))
             ->markdown('contacts::mail.new-contact-request', ['contact' => $this->contact]);
     }
 

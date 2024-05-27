@@ -10,7 +10,7 @@ use TypiCMS\Modules\Core\Facades\TypiCMS;
 /*
  * Front office routes
  */
-if ($page = TypiCMS::getPageLinkedToModule('contacts')) {
+if ($page = getPageLinkedToModule('contacts')) {
     $middleware = $page->private ? ['public', 'auth'] : ['public'];
     foreach (locales() as $lang) {
         if ($page->isPublished($lang) && $uri = $page->uri($lang)) {

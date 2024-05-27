@@ -17,5 +17,5 @@
 @lang('Regards')
 ,
 <br />
-{{ TypiCMS::title() }}
+{{ websiteTitle() }}
 @endcomponent
