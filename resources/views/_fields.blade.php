@@ -1,5 +1,5 @@
 {!! Honeypot::generate('my_name', 'my_time') !!}
-{!! BootForm::hidden('locale')->value(isset($model->locale) ? $model->locale : config('app.locale')) !!}
+{!! BootForm::hidden('locale')->value(isset($model->locale) ? $model->locale : app()->getLocale()) !!}
 {!! BootForm::hidden('id') !!}
 {!! BootForm::text(__('Name') . ' <span class="required_mark">*</span>', 'name')->required()->autocomplete('on') !!}
 {!! BootForm::email(__('Email') . ' <span class="required_mark">*</span>', 'email')->required()->autocomplete('on') !!}
