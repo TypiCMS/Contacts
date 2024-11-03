@@ -13,8 +13,8 @@ use TypiCMS\Modules\Core\Facades\TypiCMS;
 if ($page = getPageLinkedToModule('contacts')) {
     $middleware = $page->private ? ['public', 'auth'] : ['public'];
     foreach (locales() as $lang) {
-        if ($page->isPublished($lang) && $uri = $page->uri($lang)) {
-            Route::middleware($middleware)->prefix($uri)->name($lang . '::')->group(function (Router $router) {
+        if ($page->isPublished($lang) && $path = $page->path($lang)) {
+            Route::middleware($middleware)->prefix($path)->name($lang . '::')->group(function (Router $router) {
                 $router->get('/', [PublicController::class, 'form'])->name('index-contacts');
                 $router->get('sent', [PublicController::class, 'sent'])->name('contact-sent');
                 $router->post('/', [PublicController::class, 'store'])->name('store-contact');
