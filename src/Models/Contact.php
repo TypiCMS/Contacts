@@ -20,8 +20,4 @@ class Contact extends Base
         'privacy_policy_accepted' => 'boolean',
     ];
 
-    public function uri($locale = null): string
-    {
-        return url('/');
-    }
 }
