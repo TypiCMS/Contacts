@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Contacts\Http\Controllers\AdminController;
 use TypiCMS\Modules\Contacts\Http\Controllers\ApiController;
 use TypiCMS\Modules\Contacts\Http\Controllers\PublicController;
-use TypiCMS\Modules\Core\Facades\TypiCMS;
 
 /*
  * Front office routes

@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Contacts\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Contacts\Models\Contact;
-use TypiCMS\Modules\Core\Facades\TypiCMS;
 
 class ModuleServiceProvider extends ServiceProvider
 {

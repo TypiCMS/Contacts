@@ -19,5 +19,4 @@ class Contact extends Base
     protected $casts = [
         'privacy_policy_accepted' => 'boolean',
     ];
-
 }
