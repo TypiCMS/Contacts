@@ -16,7 +16,13 @@ class Contact extends Base
 
     protected $guarded = ['my_name', 'my_time'];
 
-    protected $casts = [
-        'privacy_policy_accepted' => 'boolean',
-    ];
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'privacy_policy_accepted' => 'boolean',
+        ];
+    }
 }
