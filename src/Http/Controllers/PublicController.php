@@ -38,7 +38,7 @@ class PublicController extends BasePublicController
         Notification::route('mail', config('typicms.webmaster_email'))
             ->notify(new NewContactRequest($contact));
 
-        Notification::route('mail', $request->email)
+        Notification::route('mail', $request->string('email'))
             ->notify(new YourContactRequest($contact));
 
         return redirect()->route(app()->getLocale() . '::contact-sent')
