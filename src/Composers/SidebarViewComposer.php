@@ -14,7 +14,7 @@ class SidebarViewComposer
         if (Gate::denies('read contacts')) {
             return;
         }
-        $view->sidebar->group(__('Contacts'), function (SidebarGroup $group) {
+        $view->offsetGet('sidebar')->group(__('Contacts'), function (SidebarGroup $group) {
             $group->id = 'contacts';
             $group->weight = 20;
             $group->addItem(__('Contacts'), function (SidebarItem $item) {
