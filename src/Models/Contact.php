@@ -32,9 +32,7 @@ class Contact extends Base
 
     protected $guarded = ['my_name', 'my_time'];
 
-    /**
-     * @return array<string, string>
-     */
+    /** @return array<string, string> */
     protected function casts(): array
     {
         return [

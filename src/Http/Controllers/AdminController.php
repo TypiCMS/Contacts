@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use TypiCMS\Modules\Contacts\Exports\Export;
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Models\Contact;
@@ -18,7 +19,7 @@ class AdminController extends BaseAdminController
         return view('contacts::admin.index');
     }
 
-    public function export(Request $request)
+    public function export(Request $request): BinaryFileResponse
     {
         $filename = date('Y-m-d') . ' ' . config('app.name') . ' contacts.xlsx';
 

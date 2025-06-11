@@ -6,7 +6,8 @@ use TypiCMS\Modules\Core\Http\Requests\AbstractFormRequest;
 
 class FormRequest extends AbstractFormRequest
 {
-    public function rules()
+    /** @return array<string, string> */
+    public function rules(): array
     {
         return [
             'email' => 'required|email:rfc,dns|max:255',
