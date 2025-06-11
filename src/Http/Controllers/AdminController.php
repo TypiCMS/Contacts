@@ -42,7 +42,7 @@ class AdminController extends BaseAdminController
 
     public function store(FormRequest $request): RedirectResponse
     {
-        $contact = Contact::create($request->validated());
+        $contact = Contact::query()->create($request->validated());
 
         return $this->redirect($request, $contact)
             ->withMessage(__('Item successfully created.'));

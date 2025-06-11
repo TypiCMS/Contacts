@@ -18,7 +18,7 @@ class PublicController extends BasePublicController
         return view('contacts::public.form');
     }
 
-    public function sent()
+    public function sent(): View|RedirectResponse
     {
         if (session('success')) {
             return view('contacts::public.sent');
@@ -33,7 +33,7 @@ class PublicController extends BasePublicController
         foreach ($request->validated() as $key => $value) {
             $data[$key] = strip_tags($value);
         }
-        $contact = Contact::create($data);
+        $contact = Contact::query()->create($data);
 
         Notification::route('mail', config('typicms.webmaster_email'))
             ->notify(new NewContactRequest($contact));

@@ -2,6 +2,8 @@
 
 namespace TypiCMS\Modules\Contacts\Exports;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -14,9 +16,13 @@ use Spatie\QueryBuilder\QueryBuilder;
 use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Core\Filters\FilterOr;
 
+/**
+ * @implements WithMapping<mixed>
+ */
 class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, WithHeadings, WithMapping
 {
-    public function collection()
+    /** @return Collection<int, Model> */
+    public function collection(): Collection
     {
         return QueryBuilder::for(Contact::class)
             ->allowedSorts(['created_at', 'name', 'email', 'message'])
@@ -26,18 +32,20 @@ class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, Wi
             ->get();
     }
 
-    public function map($model): array
+    /** @return array<int, mixed> */
+    public function map(mixed $row): array
     {
         return [
-            Date::dateTimeToExcel($model->created_at),
-            Date::dateTimeToExcel($model->updated_at),
-            $model->locale,
-            $model->name,
-            $model->email,
-            $model->message,
+            Date::dateTimeToExcel($row->created_at),
+            Date::dateTimeToExcel($row->updated_at),
+            $row->locale,
+            $row->name,
+            $row->email,
+            $row->message,
         ];
     }
 
+    /** @return string[] */
     public function headings(): array
     {
         return [
@@ -50,6 +58,7 @@ class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, Wi
         ];
     }
 
+    /** @return array<string, string> */
     public function columnFormats(): array
     {
         return [
