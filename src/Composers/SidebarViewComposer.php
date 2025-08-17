@@ -22,7 +22,6 @@ class SidebarViewComposer
                 $item->icon = config('typicms.modules.contacts.sidebar.icon');
                 $item->weight = config('typicms.modules.contacts.sidebar.weight');
                 $item->route('admin::index-contacts');
-                $item->append('admin::create-contact');
             });
         });
     }
