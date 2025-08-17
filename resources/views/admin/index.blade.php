@@ -4,8 +4,8 @@
 
 @section('content')
     <item-list url-base="/api/contacts" fields="id,created_at,name,email,message" table="contacts" title="contacts" :translatable="false" :publishable="false" :exportable="true" :searchable="['name,email,message']" :sorting="['-created_at']">
-        <template #add-button v-if="$can('create contacts')">
-            @include('core::admin._button-create', ['module' => 'contacts'])
+        <template #top-buttons v-if="$can('create contacts')">
+            <x-core::create-button :url="route('admin::create-contact')" :label="__('Create contact')" />
         </template>
 
         <template #columns="{ sortArray }">
