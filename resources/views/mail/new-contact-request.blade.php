@@ -1,10 +1,8 @@
 @component('mail::message')
-#
-@lang('New contact request from')
-{{ $contact->name }}.
+# @lang('New contact request from') {{ $contact->name }}.
 
 @component('mail::panel')
-@foreach (\Illuminate\Support\Arr::except($contact->toArray(), ['id', 'created_at', 'updated_at']) as $key => $value)
+@foreach (Arr::except($contact->toArray(), ['id', 'created_at', 'updated_at']) as $key => $value)
 **{{ __(ucfirst($key)) }}**
 <br />
 {{ $value }}

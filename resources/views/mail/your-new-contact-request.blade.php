@@ -1,11 +1,10 @@
 @component('mail::message')
-#
-@lang('Hello!')
+# @lang('Hello!')
 
 @lang('Thank you for your contact request.')
 
 @component('mail::panel')
-@foreach (\Illuminate\Support\Arr::except($contact->toArray(), ['id', 'created_at', 'updated_at', 'locale']) as $key => $value)
+@foreach (Arr::except($contact->toArray(), ['id', 'created_at', 'updated_at', 'locale']) as $key => $value)
 **{{ __(ucfirst($key)) }}**
 <br />
 {{ $value }}
@@ -14,8 +13,7 @@
 @endforeach
 @endcomponent
 
-@lang('Regards')
-,
+@lang('Regards'),
 <br />
 {{ websiteTitle() }}
 @endcomponent
