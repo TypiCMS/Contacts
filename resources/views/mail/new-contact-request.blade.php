@@ -2,12 +2,12 @@
 # @lang('New contact request from') {{ $contact->name }}.
 
 @component('mail::panel')
-@foreach (Arr::except($contact->toArray(), ['id', 'created_at', 'updated_at']) as $key => $value)
-**{{ __(ucfirst($key)) }}**
+@foreach (Arr::except($contact->toArray(), ['id', 'created_at', 'updated_at', 'locale', 'privacy_policy_accepted']) as $key => $value)
+<p>
+<strong>{{ __(ucfirst($key)) }}</strong>
 <br />
 {{ $value }}
-<br />
-<br />
+</p>
 @endforeach
 @endcomponent
 
