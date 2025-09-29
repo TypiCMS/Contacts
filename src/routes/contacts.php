@@ -1,11 +1,11 @@
 <?php
 
-use TypiCMS\Modules\Core\Models\Page;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Contacts\Http\Controllers\AdminController;
 use TypiCMS\Modules\Contacts\Http\Controllers\ApiController;
 use TypiCMS\Modules\Contacts\Http\Controllers\PublicController;
+use TypiCMS\Modules\Core\Models\Page;
 
 /*
  * Front office routes
