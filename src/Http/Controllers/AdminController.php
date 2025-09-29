@@ -31,7 +31,7 @@ class AdminController extends BaseAdminController
         $model = new Contact();
 
         return view('contacts::admin.create')
-            ->with(compact('model'));
+            ->with(['model' => $model]);
     }
 
     public function edit(Contact $contact): View

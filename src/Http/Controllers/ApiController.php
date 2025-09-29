@@ -16,14 +16,12 @@ class ApiController extends BaseApiController
     /** @return LengthAwarePaginator<int, mixed> */
     public function index(Request $request): LengthAwarePaginator
     {
-        $data = QueryBuilder::for(Contact::class)
+        return QueryBuilder::for(Contact::class)
             ->allowedSorts(['created_at', 'name', 'email', 'message'])
             ->allowedFilters([
                 AllowedFilter::custom('name,email,message', new FilterOr()),
             ])
             ->paginate($request->integer('per_page'));
-
-        return $data;
     }
 
     public function destroy(Contact $contact): JsonResponse

@@ -1,5 +1,6 @@
 <?php
 
+use TypiCMS\Modules\Core\Models\Page;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Contacts\Http\Controllers\AdminController;
@@ -9,11 +10,11 @@ use TypiCMS\Modules\Contacts\Http\Controllers\PublicController;
 /*
  * Front office routes
  */
-if ($page = getPageLinkedToModule('contacts')) {
+if (($page = getPageLinkedToModule('contacts')) instanceof Page) {
     $middleware = $page->private ? ['public', 'auth'] : ['public'];
     foreach (locales() as $lang) {
         if ($page->isPublished($lang) && $path = $page->path($lang)) {
-            Route::middleware($middleware)->prefix($path)->name($lang . '::')->group(function (Router $router) {
+            Route::middleware($middleware)->prefix($path)->name($lang . '::')->group(function (Router $router): void {
                 $router->get('/', [PublicController::class, 'form'])->name('index-contacts');
                 $router->get('sent', [PublicController::class, 'sent'])->name('contact-sent');
                 $router->post('/', [PublicController::class, 'store'])->name('store-contact');
@@ -25,7 +26,7 @@ if ($page = getPageLinkedToModule('contacts')) {
 /*
  * Admin routes
  */
-Route::middleware('admin')->prefix('admin')->name('admin::')->group(function (Router $router) {
+Route::middleware('admin')->prefix('admin')->name('admin::')->group(function (Router $router): void {
     $router->get('contacts', [AdminController::class, 'index'])->name('index-contacts')->middleware('can:read contacts');
     $router->get('contacts/export', [AdminController::class, 'export'])->name('export-contacts')->middleware('can:read contacts');
     $router->get('contacts/create', [AdminController::class, 'create'])->name('create-contact')->middleware('can:create contacts');
@@ -37,7 +38,7 @@ Route::middleware('admin')->prefix('admin')->name('admin::')->group(function (Ro
 /*
  * API routes
  */
-Route::middleware(['api', 'auth:api'])->prefix('api')->group(function (Router $router) {
+Route::middleware(['api', 'auth:api'])->prefix('api')->group(function (Router $router): void {
     $router->get('contacts', [ApiController::class, 'index'])->middleware('can:read contacts');
     $router->patch('contacts/{contact}', [ApiController::class, 'updatePartial'])->middleware('can:update contacts');
     $router->delete('contacts/{contact}', [ApiController::class, 'destroy'])->middleware('can:delete contacts');

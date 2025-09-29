@@ -14,10 +14,10 @@ class SidebarViewComposer
         if (Gate::denies('read contacts')) {
             return;
         }
-        $view->offsetGet('sidebar')->group(__('Contacts'), function (SidebarGroup $group) {
+        $view->offsetGet('sidebar')->group(__('Contacts'), function (SidebarGroup $group): void {
             $group->id = 'contacts';
             $group->weight = 20;
-            $group->addItem(__('Contacts'), function (SidebarItem $item) {
+            $group->addItem(__('Contacts'), function (SidebarItem $item): void {
                 $item->id = 'contacts';
                 $item->icon = config('typicms.modules.contacts.sidebar.icon');
                 $item->weight = config('typicms.modules.contacts.sidebar.weight');
