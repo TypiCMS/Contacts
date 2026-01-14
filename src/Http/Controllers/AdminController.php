@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
@@ -12,7 +14,7 @@ use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 
-class AdminController extends BaseAdminController
+final class AdminController extends BaseAdminController
 {
     public function index(): View
     {
@@ -30,29 +32,25 @@ class AdminController extends BaseAdminController
     {
         $model = new Contact();
 
-        return view('contacts::admin.create')
-            ->with(['model' => $model]);
+        return view('contacts::admin.create', ['model' => $model]);
     }
 
     public function edit(Contact $contact): View
     {
-        return view('contacts::admin.edit')
-            ->with(['model' => $contact]);
+        return view('contacts::admin.edit', ['model' => $contact]);
     }
 
     public function store(FormRequest $request): RedirectResponse
     {
         $contact = Contact::query()->create($request->validated());
 
-        return $this->redirect($request, $contact)
-            ->withMessage(__('Item successfully created.'));
+        return $this->redirect($request, $contact)->withMessage(__('Item successfully created.'));
     }
 
     public function update(Contact $contact, FormRequest $request): RedirectResponse
     {
         $contact->update($request->validated());
 
-        return $this->redirect($request, $contact)
-            ->withMessage(__('Item successfully updated.'));
+        return $this->redirect($request, $contact)->withMessage(__('Item successfully updated.'));
     }
 }

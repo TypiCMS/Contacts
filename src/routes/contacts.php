@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Contacts\Http\Controllers\AdminController;
@@ -13,12 +15,15 @@ use TypiCMS\Modules\Core\Models\Page;
 if (($page = getPageLinkedToModule('contacts')) instanceof Page) {
     $middleware = $page->private ? ['public', 'auth'] : ['public'];
     foreach (locales() as $lang) {
-        if ($page->isPublished($lang) && $path = $page->path($lang)) {
-            Route::middleware($middleware)->prefix($path)->name($lang . '::')->group(function (Router $router): void {
-                $router->get('/', [PublicController::class, 'form'])->name('index-contacts');
-                $router->get('sent', [PublicController::class, 'sent'])->name('contact-sent');
-                $router->post('/', [PublicController::class, 'store'])->name('store-contact');
-            });
+        if ($page->isPublished($lang) && ($path = $page->path($lang))) {
+            Route::middleware($middleware)
+                ->prefix($path)
+                ->name($lang . '::')
+                ->group(function (Router $router): void {
+                    $router->get('/', [PublicController::class, 'form'])->name('index-contacts');
+                    $router->get('sent', [PublicController::class, 'sent'])->name('contact-sent');
+                    $router->post('/', [PublicController::class, 'store'])->name('store-contact');
+                });
         }
     }
 }
@@ -26,14 +31,35 @@ if (($page = getPageLinkedToModule('contacts')) instanceof Page) {
 /*
  * Admin routes
  */
-Route::middleware('admin')->prefix('admin')->name('admin::')->group(function (Router $router): void {
-    $router->get('contacts', [AdminController::class, 'index'])->name('index-contacts')->middleware('can:read contacts');
-    $router->get('contacts/export', [AdminController::class, 'export'])->name('export-contacts')->middleware('can:read contacts');
-    $router->get('contacts/create', [AdminController::class, 'create'])->name('create-contact')->middleware('can:create contacts');
-    $router->get('contacts/{contact}/edit', [AdminController::class, 'edit'])->name('edit-contact')->middleware('can:read contacts');
-    $router->post('contacts', [AdminController::class, 'store'])->name('store-contact')->middleware('can:create contacts');
-    $router->put('contacts/{contact}', [AdminController::class, 'update'])->name('update-contact')->middleware('can:update contacts');
-});
+Route::middleware('admin')
+    ->prefix('admin')
+    ->name('admin::')
+    ->group(function (Router $router): void {
+        $router
+            ->get('contacts', [AdminController::class, 'index'])
+            ->name('index-contacts')
+            ->middleware('can:read contacts');
+        $router
+            ->get('contacts/export', [AdminController::class, 'export'])
+            ->name('export-contacts')
+            ->middleware('can:read contacts');
+        $router
+            ->get('contacts/create', [AdminController::class, 'create'])
+            ->name('create-contact')
+            ->middleware('can:create contacts');
+        $router
+            ->get('contacts/{contact}/edit', [AdminController::class, 'edit'])
+            ->name('edit-contact')
+            ->middleware('can:read contacts');
+        $router
+            ->post('contacts', [AdminController::class, 'store'])
+            ->name('store-contact')
+            ->middleware('can:create contacts');
+        $router
+            ->put('contacts/{contact}', [AdminController::class, 'update'])
+            ->name('update-contact')
+            ->middleware('can:update contacts');
+    });
 
 /*
  * API routes

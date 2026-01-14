@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Contacts\Notifications;
 
 use Illuminate\Bus\Queueable;
@@ -10,7 +12,9 @@ class NewContactRequest extends Notification
 {
     use Queueable;
 
-    public function __construct(private readonly mixed $contact) {}
+    public function __construct(
+        private readonly mixed $contact,
+    ) {}
 
     /** @return string[] */
     public function via(): array

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
@@ -11,7 +13,7 @@ use TypiCMS\Modules\Contacts\Notifications\NewContactRequest;
 use TypiCMS\Modules\Contacts\Notifications\YourContactRequest;
 use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 
-class PublicController extends BasePublicController
+final class PublicController extends BasePublicController
 {
     public function form(): View
     {
@@ -33,15 +35,13 @@ class PublicController extends BasePublicController
         foreach ($request->validated() as $key => $value) {
             $data[$key] = strip_tags((string) $value);
         }
+
         $contact = Contact::query()->create($data);
 
-        Notification::route('mail', config('typicms.webmaster_email'))
-            ->notify(new NewContactRequest($contact));
+        Notification::route('mail', config('typicms.webmaster_email'))->notify(new NewContactRequest($contact));
 
-        Notification::route('mail', $request->string('email'))
-            ->notify(new YourContactRequest($contact));
+        Notification::route('mail', (string) $request->string('email'))->notify(new YourContactRequest($contact));
 
-        return to_route(app()->getLocale() . '::contact-sent')
-            ->with('success', true);
+        return to_route(app()->getLocale() . '::contact-sent')->with('success', true);
     }
 }
