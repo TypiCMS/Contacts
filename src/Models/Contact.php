@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Contacts\Models;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Laracasts\Presenter\PresentableTrait;
 use TypiCMS\Modules\Contacts\Presenters\ModulePresenter;
-use TypiCMS\Modules\Core\Models\Base;
 use TypiCMS\Modules\Core\Models\History;
+use TypiCMS\Modules\Core\Traits\HasAdminUrls;
+use TypiCMS\Modules\Core\Traits\HasConfigurableOrder;
+use TypiCMS\Modules\Core\Traits\HasSelectableFields;
+use TypiCMS\Modules\Core\Traits\HasSlugScope;
 use TypiCMS\Modules\Core\Traits\Historable;
+use TypiCMS\Modules\Core\Traits\Publishable;
 
 /**
  * @property int $id
@@ -25,10 +31,16 @@ use TypiCMS\Modules\Core\Traits\Historable;
  * @property-read int|null $history_count
  * @property-write mixed $status
  */
-class Contact extends Base
+class Contact extends Model
 {
+    use Cachable;
+    use HasAdminUrls;
+    use HasConfigurableOrder;
+    use HasSelectableFields;
+    use HasSlugScope;
     use Historable;
     use PresentableTrait;
+    use Publishable;
 
     protected string $presenter = ModulePresenter::class;
 
