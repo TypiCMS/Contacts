@@ -5,7 +5,7 @@
 @section('page')
     <div class="page-body">
         <div class="page-body-container">
-            <div class="rich-content">{!! $page->present()->body !!}</div>
+            <div class="rich-content">{!! $page->formattedBody() !!}</div>
 
             <p class="alert alert-success">@lang('message when contact form is sent')</p>
         </div>

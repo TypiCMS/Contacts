@@ -18,7 +18,7 @@
                 </div>
             @endif
 
-            <div class="rich-content">{!! $page->present()->body !!}</div>
+            <div class="rich-content">{!! $page->formattedBody() !!}</div>
 
             {!! BootForm::open()->action(route($lang . '::store-contact'))->multipart() !!}
 

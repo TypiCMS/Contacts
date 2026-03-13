@@ -8,11 +8,10 @@ use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
-use Laracasts\Presenter\PresentableTrait;
-use TypiCMS\Modules\Contacts\Presenters\ModulePresenter;
 use TypiCMS\Modules\Core\Models\History;
 use TypiCMS\Modules\Core\Traits\HasAdminUrls;
 use TypiCMS\Modules\Core\Traits\HasConfigurableOrder;
+use TypiCMS\Modules\Core\Traits\HasPresenterMethods;
 use TypiCMS\Modules\Core\Traits\HasSelectableFields;
 use TypiCMS\Modules\Core\Traits\HasSlugScope;
 use TypiCMS\Modules\Core\Traits\Historable;
@@ -36,13 +35,11 @@ class Contact extends Model
     use Cachable;
     use HasAdminUrls;
     use HasConfigurableOrder;
+    use HasPresenterMethods;
     use HasSelectableFields;
     use HasSlugScope;
     use Historable;
-    use PresentableTrait;
     use Publishable;
-
-    protected string $presenter = ModulePresenter::class;
 
     protected $guarded = ['my_name', 'my_time'];
 
@@ -52,5 +49,15 @@ class Contact extends Model
         return [
             'privacy_policy_accepted' => 'boolean',
         ];
+    }
+
+    public function formattedCreatedAt(): string
+    {
+        return $this->created_at->format('d.m.Y');
+    }
+
+    public function presentTitle(): string
+    {
+        return $this->name;
     }
 }
