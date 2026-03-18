@@ -15,7 +15,6 @@ use TypiCMS\Modules\Core\Traits\HasPresenterMethods;
 use TypiCMS\Modules\Core\Traits\HasSelectableFields;
 use TypiCMS\Modules\Core\Traits\HasSlugScope;
 use TypiCMS\Modules\Core\Traits\Historable;
-use TypiCMS\Modules\Core\Traits\Publishable;
 
 /**
  * @property int $id
@@ -39,7 +38,6 @@ class Contact extends Model
     use HasSelectableFields;
     use HasSlugScope;
     use Historable;
-    use Publishable;
 
     protected $guarded = ['my_name', 'my_time'];
 
