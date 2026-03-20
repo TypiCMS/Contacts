@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Contacts\Models;
 
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -31,7 +30,6 @@ use TypiCMS\Modules\Core\Traits\Historable;
  */
 class Contact extends Model
 {
-    use Cachable;
     use HasAdminUrls;
     use HasConfigurableOrder;
     use HasPresenterMethods;
