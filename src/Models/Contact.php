@@ -7,6 +7,7 @@ namespace TypiCMS\Modules\Contacts\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Override;
 use TypiCMS\Modules\Core\Models\History;
 use TypiCMS\Modules\Core\Traits\HasAdminUrls;
 use TypiCMS\Modules\Core\Traits\HasConfigurableOrder;
@@ -40,6 +41,7 @@ class Contact extends Model
     protected $guarded = ['my_name', 'my_time'];
 
     /** @return array<string, string> */
+    #[Override]
     protected function casts(): array
     {
         return [
@@ -47,13 +49,8 @@ class Contact extends Model
         ];
     }
 
-    public function formattedCreatedAt(): string
-    {
-        return $this->created_at->format('d.m.Y');
-    }
-
     public function presentTitle(): string
     {
-        return $this->name;
+        return $this->name ?? '';
     }
 }

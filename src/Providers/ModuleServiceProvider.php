@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Contacts\Providers;
 
+use Override;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Contacts\Composers\SidebarViewComposer;
@@ -38,6 +39,7 @@ class ModuleServiceProvider extends ServiceProvider
         });
     }
 
+    #[Override]
     public function register(): void
     {
         $this->app->bind('Contacts', Contact::class);
