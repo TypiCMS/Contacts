@@ -9,7 +9,7 @@ return [
         'id' => 'desc',
     ],
     'sidebar' => [
-        'icon' => '<i class="icon-user"></i>',
+        'icon' => '<i class="icon-mail"></i>',
         'weight' => 3,
     ],
     'permissions' => [
