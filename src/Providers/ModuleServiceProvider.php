@@ -14,8 +14,6 @@ class ModuleServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/contacts.php', 'typicms.modules.contacts');
-
         $this->loadRoutesFrom(__DIR__.'/../routes/contacts.php');
 
         $this->publishes([
@@ -46,6 +44,8 @@ class ModuleServiceProvider extends ServiceProvider
     #[Override]
     public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/contacts.php', 'typicms.modules.contacts');
+
         $this->app->bind('Contacts', Contact::class);
     }
 }
