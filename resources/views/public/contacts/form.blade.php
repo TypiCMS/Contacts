@@ -20,7 +20,7 @@
 
             <div class="rich-content">{!! $page->formattedBody() !!}</div>
 
-            {!! BootForm::open()->action(route($lang . '::store-contact'))->multipart() !!}
+            {!! BootForm::open()->action(route(app()->getLocale() . '::store-contact'))->multipart() !!}
 
             @include('public::contacts._fields')
 
