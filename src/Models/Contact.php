@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Contacts\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -29,6 +30,7 @@ use TypiCMS\Modules\Core\Traits\Historable;
  * @property-read int|null $history_count
  * @property-write mixed $status
  */
+#[Unguarded]
 class Contact extends Model
 {
     use HasAdminUrls;
@@ -37,8 +39,6 @@ class Contact extends Model
     use HasSelectableFields;
     use HasSlugScope;
     use Historable;
-
-    protected $guarded = ['my_name', 'my_time'];
 
     /** @return array<string, string> */
     #[Override]

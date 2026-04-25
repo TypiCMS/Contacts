@@ -25,7 +25,7 @@ class NewContactRequest extends Notification
     public function toMail(): MailMessage
     {
         return new MailMessage()
-            ->subject('[' . websiteTitle() . '] ' . __('New contact request'))
+            ->subject('['.websiteTitle().'] '.__('New contact request'))
             ->markdown('mail::contacts.new-contact-request', ['contact' => $this->contact]);
     }
 }

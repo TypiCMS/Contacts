@@ -28,7 +28,7 @@ class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, Wi
         return QueryBuilder::for(Contact::class)
             ->allowedSorts('created_at', 'name', 'email', 'message')
             ->allowedFilters(
-                AllowedFilter::custom('name,email,message', new FilterOr()),
+                AllowedFilter::custom('name,email,message', new FilterOr),
             )
             ->get();
     }

@@ -42,6 +42,6 @@ final class PublicController extends BasePublicController
 
         Notification::route('mail', (string) $request->string('email'))->notify(new YourContactRequest($contact));
 
-        return to_route(app()->getLocale() . '::contact-sent')->with('success', true);
+        return to_route(app()->getLocale().'::contact-sent')->with('success', true);
     }
 }

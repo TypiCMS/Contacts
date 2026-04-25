@@ -16,10 +16,10 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/contacts.php', 'typicms.modules.contacts');
 
-        $this->loadRoutesFrom(__DIR__ . '/../routes/contacts.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/contacts.php');
 
         $this->publishes([
-            __DIR__ . '/../../database/migrations/create_contacts_table.php.stub' => getMigrationFileName(
+            __DIR__.'/../../database/migrations/create_contacts_table.php.stub' => getMigrationFileName(
                 'create_contacts_table',
             ),
         ], 'typicms-migrations');

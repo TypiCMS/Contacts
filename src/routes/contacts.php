@@ -18,7 +18,7 @@ if (($page = getPageLinkedToModule('contacts')) instanceof Page) {
         if ($page->isPublished($lang) && ($path = $page->path($lang))) {
             Route::middleware($middleware)
                 ->prefix($path)
-                ->name($lang . '::')
+                ->name($lang.'::')
                 ->group(function (Router $router): void {
                     $router->get('/', [PublicController::class, 'form'])->name('index-contacts');
                     $router->get('sent', [PublicController::class, 'sent'])->name('contact-sent');
