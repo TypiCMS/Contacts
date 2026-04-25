@@ -1,4 +1,4 @@
-@extends('pages::public.master')
+@extends('public::pages.master')
 
 @section('bodyClass', 'body-contacts body-contacts-form body-page body-page-' . $page->id)
 
@@ -22,7 +22,7 @@
 
             {!! BootForm::open()->action(route($lang . '::store-contact'))->multipart() !!}
 
-            @include('contacts::_fields')
+            @include('public::contacts._fields')
 
             <div class="d-grid">
                 <button class="btn-primary btn btn-lg" type="submit">{{ __('Send') }}</button>

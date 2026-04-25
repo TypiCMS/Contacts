@@ -18,23 +18,27 @@ class ModuleServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/contacts.php');
 
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'contacts');
-
         $this->publishes([
             __DIR__ . '/../../database/migrations/create_contacts_table.php.stub' => getMigrationFileName(
                 'create_contacts_table',
             ),
         ], 'typicms-migrations');
         $this->publishes([
-            __DIR__ . '/../../resources/views' => resource_path('views/vendor/contacts'),
-        ], 'typicms-views');
+            __DIR__.'/../../resources/views/admin/contacts' => resource_path('views/admin/contacts'),
+        ], ['typicms-views', 'typicms-admin-views', 'typicms-admin-contacts-views']);
+        $this->publishes([
+            __DIR__.'/../../resources/views/public/contacts' => resource_path('views/public/contacts'),
+        ], ['typicms-views', 'typicms-public-views', 'typicms-public-contacts-views']);
+        $this->publishes([
+            __DIR__.'/../../resources/views/mail/contacts' => resource_path('views/mail/contacts'),
+        ], ['typicms-views', 'typicms-mail-views', 'typicms-mail-contacts-views']);
 
-        View::composer('core::admin._sidebar', SidebarViewComposer::class);
+        View::composer('admin::core._sidebar', SidebarViewComposer::class);
 
         /*
          * Add the page in the view.
          */
-        View::composer('contacts::public.*', function ($view): void {
+        View::composer('public::contacts.*', function ($view): void {
             $view->page = getPageLinkedToModule('contacts');
         });
     }

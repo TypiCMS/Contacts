@@ -17,13 +17,13 @@ final class PublicController extends BasePublicController
 {
     public function form(): View
     {
-        return view('contacts::public.form');
+        return view('public::contacts.form');
     }
 
     public function sent(): View|RedirectResponse
     {
         if (session('success')) {
-            return view('contacts::public.sent');
+            return view('public::contacts.sent');
         }
 
         return redirect(url('/'));
