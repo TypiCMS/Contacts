@@ -1,8 +1,4 @@
-@extends('admin::core.master')
-
-@section('title', __('Contacts'))
-
-@section('content')
+<x-core::layouts.admin :title="__('Contacts')">
     <item-list url-base="/api/contacts" fields="id,created_at,name,email,message" table="contacts" title="contacts" :translatable="false" :publishable="false" :exportable="true" :searchable="['name,email,message']" :sorting="['-created_at']">
         <template #top-buttons v-if="$can('create contacts')">
             <x-core::create-button :url="route('admin::create-contact')" :label="__('Create contact')" />
@@ -30,4 +26,4 @@
             <td>@{{ model.message }}</td>
         </template>
     </item-list>
-@endsection
+</x-core::layouts.admin>
