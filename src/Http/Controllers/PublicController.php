@@ -12,6 +12,7 @@ use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Contacts\Notifications\NewContactRequest;
 use TypiCMS\Modules\Contacts\Notifications\YourContactRequest;
 use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
+use TypiCMS\Modules\Core\Models\User;
 
 final class PublicController extends BasePublicController
 {
@@ -38,7 +39,9 @@ final class PublicController extends BasePublicController
 
         $contact = Contact::query()->create($data);
 
-        Notification::route('mail', config('typicms.webmaster_email'))->notify(new NewContactRequest($contact));
+        $recipients = User::query()->permission('receive contact notifications')->get();
+
+        Notification::send($recipients, new NewContactRequest($contact));
 
         Notification::route('mail', (string) $request->string('email'))->notify(new YourContactRequest($contact));
 

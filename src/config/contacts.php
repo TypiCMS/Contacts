@@ -17,5 +17,6 @@ return [
         'create contacts' => 'Create',
         'update contacts' => 'Update',
         'delete contacts' => 'Delete',
+        'receive contact notifications' => 'Receive notifications',
     ],
 ];
