@@ -1,8 +1,7 @@
-@extends('public::pages.master')
-
-@section('bodyClass', 'body-contacts body-contacts-form body-page body-page-' . $page->id)
-
-@section('page')
+<x-core::layouts.page
+    :page="$page"
+    :body-class="'body-contacts body-contacts-form body-page body-page-' . $page->id"
+>
     <div class="page-body">
         <div class="page-body-container">
             @if ($errors->any())
@@ -31,4 +30,4 @@
             {!! BootForm::close() !!}
         </div>
     </div>
-@endsection
+</x-core::layouts.page>
