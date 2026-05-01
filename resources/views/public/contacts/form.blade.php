@@ -13,18 +13,29 @@
                             <li>{{ $message }}</li>
                         @endforeach
                     </ul>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@lang('Close')"></button>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="@lang('Close')"
+                    ></button>
                 </div>
             @endif
 
             <div class="rich-content">{!! $page->formattedBody() !!}</div>
 
-            {!! BootForm::open()->action(route(app()->getLocale() . '::store-contact'))->multipart() !!}
+            {!!
+                BootForm::open()
+                    ->action(route(app()->getLocale() . '::store-contact'))
+                    ->multipart()
+            !!}
 
             @include('public::contacts._fields')
 
             <div class="d-grid">
-                <button class="btn-primary btn btn-lg" type="submit">{{ __('Send') }}</button>
+                <button class="btn-primary btn btn-lg" type="submit">
+                    {{ __('Send') }}
+                </button>
             </div>
 
             {!! BootForm::close() !!}

@@ -1,28 +1,78 @@
 <x-core::layouts.admin :title="__('Contacts')">
-    <item-list url-base="/api/contacts" fields="id,created_at,name,email,message" table="contacts" title="contacts" :translatable="false" :publishable="false" :exportable="true" :searchable="['name,email,message']" :sorting="['-created_at']">
+    <item-list
+        url-base="/api/contacts"
+        fields="id,created_at,name,email,message"
+        table="contacts"
+        title="contacts"
+        :translatable="false"
+        :publishable="false"
+        :exportable="true"
+        :searchable="['name,email,message']"
+        :sorting="['-created_at']"
+    >
         <template #top-buttons v-if="$can('create contacts')">
-            <x-core::create-button :url="route('admin::create-contact')" :label="__('Create contact')" />
+            <x-core::create-button
+                :url="route('admin::create-contact')"
+                :label="__('Create contact')"
+            />
         </template>
 
         <template #columns="{ sortArray }">
-            <item-list-column-header name="checkbox" v-if="$can('update contacts')||$can('delete contacts')"></item-list-column-header>
-            <item-list-column-header name="edit" v-if="$can('update contacts')"></item-list-column-header>
-            <item-list-column-header name="created_at" sortable :sort-array="sortArray" :label="$t('Date')"></item-list-column-header>
-            <item-list-column-header name="name" sortable :sort-array="sortArray" :label="$t('Name')"></item-list-column-header>
-            <item-list-column-header name="email" sortable :sort-array="sortArray" :label="$t('Email')"></item-list-column-header>
-            <item-list-column-header name="message" sortable :sort-array="sortArray" :label="$t('Message')"></item-list-column-header>
+            <item-list-column-header
+                name="checkbox"
+                v-if="$can('update contacts')||$can('delete contacts')"
+            ></item-list-column-header>
+            <item-list-column-header
+                name="edit"
+                v-if="$can('update contacts')"
+            ></item-list-column-header>
+            <item-list-column-header
+                name="created_at"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Date')"
+            ></item-list-column-header>
+            <item-list-column-header
+                name="name"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Name')"
+            ></item-list-column-header>
+            <item-list-column-header
+                name="email"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Email')"
+            ></item-list-column-header>
+            <item-list-column-header
+                name="message"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Message')"
+            ></item-list-column-header>
         </template>
 
         <template #table-row="{ model, checkedModels, loading }">
-            <td class="checkbox" v-if="$can('update contacts')||$can('delete contacts')">
-                <item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox>
+            <td
+                class="checkbox"
+                v-if="$can('update contacts')||$can('delete contacts')"
+            >
+                <item-list-checkbox
+                    :model="model"
+                    :checked-models-prop="checkedModels"
+                    :loading="loading"
+                ></item-list-checkbox>
             </td>
             <td v-if="$can('update contacts')">
-                <item-list-edit-button :url="'/admin/contacts/' + model.id + '/edit'"></item-list-edit-button>
+                <item-list-edit-button
+                    :url="'/admin/contacts/' + model.id + '/edit'"
+                ></item-list-edit-button>
             </td>
             <td>@{{ formatDate(model.created_at) }}</td>
             <td>@{{ model.name }}</td>
-            <td><a :href="'mailto:' + model.email">@{{ model.email }}</a></td>
+            <td>
+                <a :href="'mailto:' + model.email">@{{ model.email }}</a>
+            </td>
             <td>@{{ model.message }}</td>
         </template>
     </item-list>
