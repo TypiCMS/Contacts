@@ -7,6 +7,7 @@ namespace TypiCMS\Modules\Contacts\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
+use Spatie\ResponseCache\Attributes\NoCache;
 use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
 use TypiCMS\Modules\Contacts\Models\Contact;
 use TypiCMS\Modules\Contacts\Notifications\NewContactRequest;
@@ -21,6 +22,7 @@ final class PublicController extends BasePublicController
         return view('public::contacts.form');
     }
 
+    #[NoCache]
     public function sent(): View|RedirectResponse
     {
         if (session('success')) {
